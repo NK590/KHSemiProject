@@ -175,5 +175,7 @@ public static final int MAX_LENGTH;
 ---
 
 <a name = "footnote_1">1</a> https://dpdpwl.tistory.com/54 참조
+
 <a name = "footnote_2">2</a> https://yangbox.tistory.com/65 참조
+
 <a name = "footnote_3">3</a> https://backback.tistory.com/319 참조
