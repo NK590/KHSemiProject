@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
- <form action="/order" method="post">
+ <form action="/insert.order" method="post">
  	   <p> 주문정보를 입력해라<p>
  	  <input name="memberId" type="text" placeholder="회원아이디" />
       <input name="orderName" type="text" placeholder="수취인이름" />

@@ -9,12 +9,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import order.orderDAO.OrderDAO;
 import order.orderDTO.OrderDTO;
+import order.orderService.OrderService;
 
 
 @WebServlet("*.order")
 public class OrderController extends HttpServlet{
 	
-	
+	OrderService orderService = new OrderService();
 	
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response  ) throws ServletException, IOException {
@@ -24,9 +25,13 @@ public class OrderController extends HttpServlet{
 	    request.setCharacterEncoding("utf-8");
 	    
 	    	if(uri.equals("/form.order")) {
-	    		response.sendRedirect("/order/order.jsp");	
-	    	 	 
-	    		String memberId =   request.getParameter("memberId");  			//2.회원아이디 
+	    		response.sendRedirect("/order/order.jsp");
+	    	 
+	    		}else if(uri.equals("/complete.order")) {
+	    		response.sendRedirect("/order/orderComplete.jsp");
+	    	}else if(uri.equals("/insert.order")){
+	    		 
+	    		 String memberId =   request.getParameter("memberId");  			//2.회원아이디 
 			     String orderName =  request.getParameter("orderName");  		//3.수취인 이름 
 			     String orderContact =  request.getParameter("orderContect");	//4.수취인 연락처 
 			     String orderAddress =  request.getParameter("orderAddress");  	//5.수취인 주소 
@@ -47,14 +52,14 @@ public class OrderController extends HttpServlet{
 			     dto.setProductCode(productCode);
 			     dto.setTotalPay(totalPay);
 			     dto.setCard(card);
-			     OrderDAO dao = new OrderDAO();
 			     
-			     int inputResult =dao.insert(dto);
+			     
+			     int inputResult =orderService.save(dto);
+			     if(inputResult>0) {
+			    	 response.sendRedirect("/");
+			     }
+			     	
 	    		
-	    	}else if(uri.equals("/complete.order")) {
-	    		response.sendRedirect("/order/orderComplete.jsp");
-	    	}else {
-	    		response.sendRedirect("/");
 	    	}
 	    	 
 	   
