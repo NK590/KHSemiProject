@@ -14,9 +14,28 @@ public class OrderDTO {
 	    private String productCode; //product_code number 상품번호 
 	    private String totalPay; // total_pay number 결제금액 
 	    private String card; //card VARCHAR(100)  카드 0000
-
 	    
-	    public OrderDTO() {}
+	    
+	    
+	    
+	    public OrderDTO(Long orderNo, String memberId, String orderName, String orderContact, String orderAddress,
+				String orderMsg, String postMsg, String payNumber, String productCode, String totalPay, String card) {
+			
+			this.orderNo = orderNo;
+			this.memberId = memberId;
+			this.orderName = orderName;
+			this.orderContact = orderContact;
+			this.orderAddress = orderAddress;
+			this.orderMsg = orderMsg;
+			this.postMsg = postMsg;
+			this.payNumber = payNumber;
+			this.productCode = productCode;
+			this.totalPay = totalPay;
+			this.card = card;
+		}
+
+
+		public OrderDTO() {}
 
 
 		public Long getOrderNo() {
