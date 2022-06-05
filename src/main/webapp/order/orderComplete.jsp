@@ -1,7 +1,10 @@
+<%@page import="order.orderDTO.OrderDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
     <meta charset="UTF-8">
@@ -13,15 +16,18 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
         crossorigin="anonymous"></script>
-    <title>주문서창</title>
-    <link rel='stylesheet' href='../css/order.css'>
+        <link rel="stylesheet" type="text/css" href="order/css/orderComplete.css"><!-- css -->
+        
+        
+    <title>주문완료창</title>
+   
 </head>
 
 <body>
     <header>
         <div class="row justify-content">
             <div class="col-4">
-                <img src="../images/project_logo.PNG" class="d-block w-100" id="main-logo">
+                <img src="images/project_logo.PNG" class="d-block w-100" id="main-logo">
             </div>
             <div class="col" id="nav-item">
                 <nav class="nav">
@@ -42,51 +48,33 @@
     <!--주문서 영역-->
     <div class="container">
         <div style="margin-left: 30px;">
-            <h2>주문서</h2>
+            <h2>주문완료알림페이지</h2>
         </div>
         <div class="content" style="border: 1px solid lightgrey; margin-left:-38px;">
-            <div>성명</div>
-            <input type="text" placeholder="이름을 입력하세요." style="width: 400px;">
-            <div>전화번호</div>
-            <div>
-                <button type="button" class="btn btn-secondary" data-bs-toggle="dropdown" aria-expanded="false"
-                    style="width: 120px">010</button>
-                <div class="dropdown-menu">
-                    <li><a class="dropdown-item" href="#">017</a></li>
-                    <li><a class="dropdown-item" href="#">011</a></li>
-                    <li><a class="dropdown-item" href="#">018</a></li>
-                </div>
-                -
-                <input type="text" style="width: 120px; height: 35px;">
-                -
-                <input type="text" style="width: 120px; height: 35px;">
-            </div>
-            <div>주문한 구독 상품</div>
-            <div class="customeritem">
-                <!--고객이 주문한 상품 사진 보여주기-->
-                <div style="text-align: center;"><strong>보리밥's Special food type-A</strong></div>
-                <div>
-                    <img src="../images/project_product.PNG" style="width: 300px; margin-left: 50px;">
-                </div>
-            </div>
+            <h2>주문해주셔서 감사합니다.</h2>
+        
+        
+            <button id="goToMain">메인페이지가기</button>
+            <button id="goToList">주문내역보러가기</button>
+           
+            
+            
+            
+            
         </div>
         <div class="content1" style="border: 1px solid lightgrey; margin-left: -35px;">
-            <div>받는분 주소</div>
-            <input type="text" placeholder="우편번호" style="width: 200px;">
-            <button type="button" class="btn btn-secondary" style="height: 35px; width: 200px; margin-bottom: 5px;">우편번호
-                찾기</button>
-            <input type="text" placeholder="도로명주소" style="width: 400px;">
-            <input type="text" placeholder="상세주소" style="width: 200px; margin-top: 5px;">
-            <input type="text" placeholder="읍/면/동" style="width: 200px; margin-top: 5px;"><br>
-            <br>
+            
+            
+            
+            
+            
             <div class="customeritem">
-                <br>
-                <div style="text-align: center;"><strong>배송을 시작할까요?</strong></div>
-                <div>
-                    <img src="../images/truck_icon.png" style="width: 200px; margin-left: 100px; margin-top: 40px;">
-                </div><br>
-                <button type="button" class="btn btn-secondary" style="margin-left: 110px;">취소하기</button>
-                <button type="button" class="btn btn-success">주문하기</button>
+            
+            
+            
+            
+            
+            
             </div>
         </div>
     </div>
@@ -101,13 +89,13 @@
                 <li>대표번호 : +82)-665-3430 팩스번호 : +82)-888-3430 홈페이지 : petvenience.store.com</li>
                 <li>CopyrightⓒBoriBob Inc. All Rights Reserved.</li>
                 <div class="facebookicon">
-                    <img src="../images/facebook_icon.png" style="border-color: lightblue;">
+                    <img src="images/facebook_icon.png" style="border-color: lightblue;">
                 </div>
                 <div class="instagramicon">
-                    <img src="../images/instagram_icon.png" style="border-color: lightblue;">
+                    <img src="images/instagram_icon.png" style="border-color: lightblue;">
                 </div>
                 <div class="youtubeicon">
-                    <img src="../images/youtube_icon.png" style="border-color: lightblue;">
+                    <img src="images/youtube_icon.png" style="border-color: lightblue;">
                 </div>
                 <div class="ft-ul2">
                     <li><strong>고객센터</strong></li>
@@ -117,5 +105,13 @@
                 </div>
             </ul>
         </div>
+        <script>
+            const listBtn = document.getElementById("goToList");
+
+            listBtn.onclick(function(){
+                location.href="/list.order";
+            })
+
+        </script>
 </body>
 </html>
