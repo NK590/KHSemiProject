@@ -103,7 +103,28 @@ pageEncoding="UTF-8"%>
         </div>
       </div>
       <!-- 여기까지 헤더 -->
+      <div class="container">
+        <div class="col">
+          <div class="row">
+            <a href=""> 주문1 주문일자 == 주문 상품명 == 주문번호 ==배송상태</a>
+          </div>
+          <div class="row">
+            <a href=""> 주문2 주문일자 == 주문 상품명 == 주문번호 ==배송상태</a>
+          </div>
+          <div class="row">
+            <a href=""> 주문3 주문일자 == 주문 상품명 == 주문번호 ==배송상태</a>
+          </div>
+          <div class="row">
+            <a href=""> 주문4 주문일자 == 주문 상품명 == 주문번호 ==배송상태</a>
+          </div>
+          <div class="row">
+            <a href=""> 주문5 주문일자 == 주문 상품명 == 주문번호 ==배송상태</a>
+          </div>
+        </div>
 
+        <button type="button" class="btn btn-primary">메인페이지로이동</button>
+        <button type="button" class="btn btn-primary">리뷰페이지로이동</button>
+      </div>
       <!-- 여기에 바디 코드 짜주셈 -->
       <div class="container">
         <div class="col">

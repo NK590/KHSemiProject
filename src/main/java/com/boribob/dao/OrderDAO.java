@@ -1,138 +1,162 @@
 package com.boribob.dao;
 
 import java.lang.reflect.Member;
-import java.nio.channels.SelectableChannel;
+import java.security.interfaces.RSAKey;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
 
-import org.apache.commons.dbcp2.BasicDataSource;
+import org.apache.tomcat.dbcp.dbcp2.BasicDataSource;
 
 import order.orderDTO.OrderDTO;
-import order.orderDTO.PaymentDTO;
+import order.orderDTO.OrderInfoDTO;
 
 public class OrderDAO {
 
-	private BasicDataSource bds; 
+	private BasicDataSource bds;
 
-	
-	
 	public OrderDAO() {
 		try {
-			Context iCtx = new InitialContext(); 
-			Context envCtx = (Context)iCtx.lookup("java:comp/env");
-			bds = (BasicDataSource)envCtx.lookup("jdbc/bds"); 
-		
-		}catch(Exception e) {
+			Context iCtx = new InitialContext();
+			Context envCtx = (Context) iCtx.lookup("java:comp/env");
+			bds = (BasicDataSource) envCtx.lookup("jdbc/bds");
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
 	}
-	
+
 	public Connection getConnection() throws Exception {
 		return bds.getConnection();
 	}
-	
-	public int insertOrder(OrderDTO dto)throws Exception {  // 주문정보 등록 
-		String sql = "insert into tbl_order values(order_seq.nextval,?,?,?,?,?,?)";
-		try (Connection con = bds.getConnection(); PreparedStatement pstmt = con.prepareStatement(sql);) {
+
+	public Integer findOrderNoById(String memberId) throws Exception { // 회원 아이디로 주문번호 찾기
+		String sql = "select order_no from tbl_order where id = ?";
+
+		try (Connection con = this.getConnection(); PreparedStatement pstmt = con.prepareStatement(sql);) {
+			pstmt.setString(1, memberId);
+
+			ResultSet rs = pstmt.executeQuery();
+
+			if (rs.next()) {
+				return rs.getInt("order_no");
+			} else
+				return null;
+
+		}
+
+	}
+
+	public OrderInfoDTO findbyMemberId(String memberId) throws Exception { // 회원아이디로 검색
+		String sql = " select " + "m.id, " + "m.name, " + "m.phone, " + "m.post, " + "m.road_address, "
+				+ "m.detail_address, " + "s.product_code, " + "to_char(s.subscribe_start,'YYYY/MM/DD'),"
+				+ "s.subscribe_term, " + "s.price "
+				+ "from tbl_member m Left outer join tbl_subscribe s on m.id = s.id where m.id =? ";
+
+		try (Connection con = this.getConnection(); PreparedStatement pstmt = con.prepareStatement(sql);) {
+			pstmt.setString(1, memberId);
+
+			ResultSet rs = pstmt.executeQuery();
+
+			if (rs.next()) {
+				String id = rs.getString("id");
+				String name = rs.getString("name");
+				String phone = rs.getString("phone");
+				String post = rs.getString("post");
+				String roadAddress = rs.getString("road_address");
+				String detailAddress = rs.getString("detail_address");
+				int productCode = rs.getInt("product_code");
+				String subscribeStart = rs.getString("to_char(s.subscribe_start,'YYYY/MM/DD')");
+				int subscribeTerm = rs.getInt("subscribe_term");
+				int price = rs.getInt("price");
+
+				return new OrderInfoDTO(id, name, phone, post, roadAddress, detailAddress, productCode, subscribeStart,
+						subscribeTerm, price);
+
+			} else {
+				return null;
+			}
+		}
+
+	}
+
+	public int insertOrder(OrderDTO dto) throws Exception { // 주문정보 등록
+		String sql = "insert into tbl_order values(order_seq.nextval,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+		try (Connection con = getConnection(); PreparedStatement pstmt = con.prepareStatement(sql);) {
 			// order_no -> 시퀀스
-			pstmt.setInt(1, dto.getSeqSubscribe()); // -> 구독번호
-			pstmt.setString(2, dto.getOrderName());// -> 수취인 이름
-			pstmt.setString(3, dto.getOrderPhone()); // -> 수취인 연락처
-			pstmt.setString(4, dto.getOrderAddress()); // -> 수취인 주소
-			pstmt.setString(5, dto.getOrderMsg()); // -> 수취인 주문메시지
-			pstmt.setString(6, dto.getPostMsg()); // -> 수취인 배송메시지
+			pstmt.setString(1, dto.getId()); // -> 회원 아이디
+			pstmt.setString(2, dto.getOrderName());// -> 수취자
+			pstmt.setString(3, dto.getOrderPhone());// -> 수취인 연락처
+			pstmt.setString(4, dto.getOrderPost()); // -> 우편번호
+			pstmt.setString(5, dto.getOrderRoadAddress()); // -> 수취인 주소
+			pstmt.setString(6, dto.getOrderDetailAddress()); // -> 수취인 상세주소
+			pstmt.setString(7, dto.getOrderMsg()); // -> 수취인 주문 메시지
+			pstmt.setString(8, dto.getPostMsg()); // -> 수취인 배송메시지
+			pstmt.setInt(9, dto.getProductName()); // -> 상품코드
+			pstmt.setString(10, dto.getSubscribeStart()); // 구독 시작일
+			pstmt.setInt(11, dto.getSubscribeTerm()); // ->구독기간
+			pstmt.setInt(12, dto.getPrice()); // -> 가격
 
-
-			int rs = pstmt.executeUpdate();
-
-			return rs;
-		}
-		
-
-	}
-		
-	
-	
-	public ArrayList<OrderDTO> findbyOrderName(String orderName)throws Exception { //주문자명으로 검색하기 
-		String sql = "select * from tbl_order where order_name = ?";
-		try (Connection con = bds.getConnection(); PreparedStatement pstmt = con.prepareStatement(sql);) {
-		pstmt.setString(1, orderName);
-		
-		ResultSet rs  = pstmt.executeQuery();
-		ArrayList<OrderDTO> findOrder = new ArrayList<OrderDTO>();
-		
-		while(rs.next()) {
-			int order_no = rs.getInt("order_no");
-			int seq_subscribe = rs.getInt("seq_subscribe");
-			String order_name = rs.getString("order_name");
-			String order_phone = rs.getString("order_phone");
-			String order_address = rs.getString("order_address");
-			String order_msg = rs.getString("order_msg");
-			String post_msg = rs.getString("post_msg");
-			 
-			findOrder.add(new OrderDTO(order_no,seq_subscribe,order_name,order_phone,order_address,order_msg,post_msg));
-		}
-		return findOrder;
-		
-		
-			
-		}
-	}
-	
-	public ArrayList<OrderDTO> findbySubscirbeNo(int subscribeNo)throws Exception { //구독번호로 검색하기 
-		String sql = "select * from tbl_order where seq_subscribe = ?";
-		try (Connection con = bds.getConnection(); PreparedStatement pstmt = con.prepareStatement(sql);) {
-		pstmt.setInt(1, subscribeNo);
-		
-		ResultSet rs  = pstmt.executeQuery();
-		ArrayList<OrderDTO> findOrder = new ArrayList<OrderDTO>();
-		
-		while(rs.next()) {
-			int order_no = rs.getInt("order_no");
-			int seq_subscribe = rs.getInt("seq_subscribe");
-			String order_name = rs.getString("order_name");
-			String order_phone = rs.getString("order_phone");
-			String order_address = rs.getString("order_address");
-			String order_msg = rs.getString("order_msg");
-			String post_msg = rs.getString("post_msg");
-			 
-			findOrder.add(new OrderDTO(order_no,seq_subscribe,order_name,order_phone,order_address,order_msg,post_msg));
-		}
-		return findOrder;
-		
-		
-			
-		}
-	}
-	
-
-	public int updateOrder(OrderDTO dto)throws Exception {  // 주문정보 등록 
-		String sql = "update tbl_order set order_phone = ?, order_Address = ?,order_msg = ?,post_msg = ? where order_no = ? ";
-		try (Connection con = bds.getConnection(); PreparedStatement pstmt = con.prepareStatement(sql);) {
-			
-			pstmt.setString(1, dto.getOrderPhone()); // -> 수취인 연락처
-			pstmt.setString(2, dto.getOrderAddress()); // -> 수취인 주소
-			pstmt.setString(3, dto.getOrderMsg()); // -> 수취인 주문메시지
-			pstmt.setString(4, dto.getPostMsg()); // -> 수취인 배송메시지
-			pstmt.setInt(5, dto.getOrderNo()); // -> 주문 번호
+			pstmt.setString(13, dto.getPaySuccess()); // 결제 성공여부
+			pstmt.setString(14, dto.getPayId()); // 결제 ID
+			pstmt.setString(15, dto.getPayTradeId()); // 상점 거래 ID
+			pstmt.setString(16, dto.getPayAmount()); // 결제금액
+			pstmt.setString(17, dto.getPayApproval()); // 승인여부
 
 			int rs = pstmt.executeUpdate();
 
 			return rs;
-		} 
+		}
 
 	}
-		
-	
-	
-	
-	
+
+	public ArrayList<OrderDTO> findListById(String memberId)throws Exception { // 주문자명으로 검색하기
+		String sql = "select * from tbl_order where id = ?";
+		try (Connection con = this.getConnection(); PreparedStatement pstmt = con.prepareStatement(sql);) {
+			pstmt.setString(1, memberId);
+
+			ResultSet rs = pstmt.executeQuery();
+			ArrayList<OrderDTO> list = new ArrayList<OrderDTO>();
+
+			while (rs.next()) {
+				 Integer orderId = rs.getInt("order_id");
+				 String id = rs.getString("id");   
+			 	
+				
+				 String orderName =rs.getString("order_name");
+			     String orderPhone=rs.getString("order_phone"); 
+			     String orderPost=rs.getString("order_post");  
+			     String orderRoadAddress=rs.getString("order_road_address");   
+			     String orderDetailAddress=rs.getString("order_detail_address"); 
+			     String orderMsg=rs.getString("order_msg");  
+			     String postMsg=rs.getString("post_msg"); 
+			    
+			     int productName = rs.getInt("product_name");; 
+			     String subscribeStart=rs.getString("subscribeStart"); 
+			     int subscribeTerm = rs.getInt("subscribeTerm");; 
+			     int price = rs.getInt("price");; 
+			    
+			     String paySuccess=rs.getString("pay_success");  
+			     String payId=rs.getString("pay_id");      
+			     String payTradeId=rs.getString("pay_tradeid");	
+			     String payAmount=rs.getString("pay_amount");  
+			     String payApproval=rs.getString("pay_approval"); 
+			
+			     list.add(new OrderDTO(orderId,id,orderName,orderPhone,orderPost,orderRoadAddress,orderDetailAddress,orderMsg,postMsg,productName,subscribeStart,subscribeTerm,price,paySuccess
+			    		 ,payId,payTradeId,payAmount,payApproval));
+			     
+			}
+			return list;
+
+		}
+	}
 	
 
 

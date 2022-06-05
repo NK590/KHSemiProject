@@ -2,15 +2,25 @@ package com.boribob.dto;
 
 public class DeliveryDTO {
 	
-	private int delivery_no;
+	private String deliveryId;
 	private String deliveryStatus;
+	private String postMsg;
 	
-	public int getDelivery_no() {
-		return delivery_no;
+	public DeliveryDTO() {}
+
+	public DeliveryDTO(String deliveryId, String deliveryStatus, String postMsg) {
+		super();
+		this.deliveryId = deliveryId;
+		this.deliveryStatus = deliveryStatus;
+		this.postMsg = postMsg;
 	}
 
-	public void setDelivery_no(int delivery_no) {
-		this.delivery_no = delivery_no;
+	public String getDeliveryId() {
+		return deliveryId;
+	}
+
+	public void setDeliveryId(String deliveryId) {
+		this.deliveryId = deliveryId;
 	}
 
 	public String getDeliveryStatus() {
@@ -21,13 +31,18 @@ public class DeliveryDTO {
 		this.deliveryStatus = deliveryStatus;
 	}
 
-	public DeliveryDTO(int delivery_no, String deliveryStatus) {
-		super();
-		this.delivery_no = delivery_no;
-		this.deliveryStatus = deliveryStatus;
+	public String getPostMsg() {
+		return postMsg;
 	}
 
-	public DeliveryDTO() {}
+	public void setPostMsg(String postMsg) {
+		this.postMsg = postMsg;
+	}
 
+	
+
+
+	
+	
 	
 }

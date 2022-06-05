@@ -106,20 +106,23 @@ pageEncoding="UTF-8"%>
 
       <!-- 여기에 바디 코드 짜주셈 -->
       <div class="container">
-        <div class="col">
-          <div class="row">주문상품</div>
-          <div class="row">주문일시</div>
-          <div class="row">주문자 연락처</div>
-          <div class="row">주문자 주소</div>
-          <div class="row">주문자 결제금액</div>
-          <div class="row">주문자 배송상태</div>
-          <div class="row">주문자 배송메시지</div>
-          <div class="row">주문자 주문메시지</div>
-
-          <button type="button" class="btn btn-success">
-            메인페이지로 이동
+        <ul class="list-group">
+          <li class="list-group-item">배송상태</li>
+          <button type="button" class="btn btn-primary">
+            배송상태상세보기
           </button>
-        </div>
+          <li class="list-group-item">주문상품</li>
+          <li class="list-group-item">주문자명</li>
+          <li class="list-group-item">주문자이메일</li>
+          <li class="list-group-item">배송지주소</li>
+          <li class="list-group-item">결제금액</li>
+          <li class="list-group-item">구독기간</li>
+          <li class="list-group-item">구독상품</li>
+          <li class="list-group-item">배송메시지</li>
+          <li class="list-group-item">주문메시지</li>
+        </ul>
+        <button type="button" class="btn btn-primary">메인페이지로이동</button>
+        <button type="button" class="btn btn-primary">리뷰페이지로이동</button>
       </div>
 
       <!-- 여기부터 풋터 -->

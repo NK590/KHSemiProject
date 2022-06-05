@@ -106,16 +106,79 @@ pageEncoding="UTF-8"%>
 
       <!-- 여기에 바디 코드 짜주셈 -->
       <div class="container">
-        <div class="col">
-          <div class="row">주문해주셔서 감사합니다.</div>
-          <div class="row">주문결제내역</div>
-          <div class="row">주문자명</div>
-          <div class="row">주문번호</div>
-          <div class="row">주문상품금액</div>
-          <button type="button" class="btn btn-success">메인페이로이동</button>
+        <div class="row">
+          <div class="col">
+            <p>주문해주셔서 감사합니다</p>
+            <p>주문해 주문 하신 내역은</p>
+          </div>
+          <div class="input-group flex-nowrap">
+            <span class="input-group-text" id="addon-wrapping">주문자명</span>
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Username"
+              aria-label="Username"
+              aria-describedby="addon-wrapping"
+            />
+          </div>
+          <div class="input-group flex-nowrap">
+            <span class="input-group-text" id="addon-wrapping">주문상품</span>
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Username"
+              aria-label="Username"
+              aria-describedby="addon-wrapping"
+            />
+          </div>
+          <div class="input-group flex-nowrap">
+            <span class="input-group-text" id="addon-wrapping">결제금액</span>
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Username"
+              aria-label="Username"
+              aria-describedby="addon-wrapping"
+            />
+          </div>
+          <div class="input-group flex-nowrap">
+            <span class="input-group-text" id="addon-wrapping">배송지</span>
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Username"
+              aria-label="Username"
+              aria-describedby="addon-wrapping"
+            />
+          </div>
+          <div class="input-group flex-nowrap">
+            <span class="input-group-text" id="addon-wrapping">배송메시지</span>
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Username"
+              aria-label="Username"
+              aria-describedby="addon-wrapping"
+            />
+          </div>
+          <div class="input-group flex-nowrap">
+            <span class="input-group-text" id="addon-wrapping">주문메시지</span>
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Username"
+              aria-label="Username"
+              aria-describedby="addon-wrapping"
+            />
+          </div>
         </div>
+        <button type="button" class="btn btn-secondary">
+          메인페이지로이동
+        </button>
+        <button type="button" class="btn btn-secondary">
+          상품페이지로이동
+        </button>
       </div>
-
       <!-- 여기부터 풋터 -->
       <div class="row justify-content-center footer">
         <div class="col-lg-10 col-12">

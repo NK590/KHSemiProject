@@ -3,141 +3,161 @@ package com.boribob.dto;
 public class OrderDTO {
 		
 			
-	private int orderNo; //order_no number 주문번호 primary key
- 	private int seqSubscribe;
+	private Integer orderId; //order_id number 주문번호 primary key
+	private String id;  //회원 아이디 
+ 	
+	
 	private String orderName;//수취인 이름 
     private String orderPhone; // 수취인 연락처 
-    private String orderAddress; //  수취인 주소  
+    private String orderPost; //  수취인 우편번호   
+    private String orderRoadAddress; //  수취인 주소  
+    private String orderDetailAddress; //  수취인 상세주소  
     private String orderMsg; // 주문메시지 
     private String postMsg; //  배송메시지
     
-  
+    private int productName; // 상품코드 
+    private String subscribeStart; // 구독시작일 
+    private int subscribeTerm; //구독 기간 
+    private int price; // 가격 
     
-	public OrderDTO(){}
+    private String paySuccess;  //  결제성공여부 
+    private String payId;       //  고유아이디 
+    private String payTradeId;	//  상점 거래 ID 
+    private String payAmount;   //  결제금액 
+    private String payApproval; //  카드승인번호 
+    
+    public OrderDTO(){}
+    
+    
+    
 
-
-
-	public OrderDTO(int orderNo, int seqSubscribe, String orderName, String orderPhone, String orderAddress,
-			String orderMsg, String postMsg) {
+	public OrderDTO(Integer orderId, String id, String orderName, String orderPhone, String orderPost,
+			String orderRoadAddress, String orderDetailAddress, String orderMsg, String postMsg, int productName,
+			String subscribeStart, int subscribeTerm, int price, String paySuccess, String payId, String payTradeId,
+			String payAmount, String payApproval) {
 		super();
-		this.orderNo = orderNo;
-		this.seqSubscribe = seqSubscribe;
+		this.orderId = orderId;
+		this.id = id;
 		this.orderName = orderName;
 		this.orderPhone = orderPhone;
-		this.orderAddress = orderAddress;
+		this.orderPost = orderPost;
+		this.orderRoadAddress = orderRoadAddress;
+		this.orderDetailAddress = orderDetailAddress;
 		this.orderMsg = orderMsg;
 		this.postMsg = postMsg;
+		this.productName = productName;
+		this.subscribeStart = subscribeStart;
+		this.subscribeTerm = subscribeTerm;
+		this.price = price;
+		this.paySuccess = paySuccess;
+		this.payId = payId;
+		this.payTradeId = payTradeId;
+		this.payAmount = payAmount;
+		this.payApproval = payApproval;
 	}
 
 
 
-	public int getOrderNo() {
-		return orderNo;
+
+	public OrderDTO(String id, String orderName, String orderPhone, String orderPost, String orderRoadAddress,
+			String orderDetailAddress, String orderMsg, String postMsg, int productName, String subscribeStart,
+			int subscribeTerm, int price, String paySuccess, String payId, String payTradeId, String payAmount,
+			String payApproval) {
+		super();
+		this.id = id;
+		this.orderName = orderName;
+		this.orderPhone = orderPhone;
+		this.orderPost = orderPost;
+		this.orderRoadAddress = orderRoadAddress;
+		this.orderDetailAddress = orderDetailAddress;
+		this.orderMsg = orderMsg;
+		this.postMsg = postMsg;
+		this.productName = productName;
+		this.subscribeStart = subscribeStart;
+		this.subscribeTerm = subscribeTerm;
+		this.price = price;
+		this.paySuccess = paySuccess;
+		this.payId = payId;
+		this.payTradeId = payTradeId;
+		this.payAmount = payAmount;
+		this.payApproval = payApproval;
 	}
 
-
-
-	public void setOrderNo(int orderNo) {
-		this.orderNo = orderNo;
+	public Integer getOrderId() {
+		return orderId;
 	}
 
-
-
-	public int getSeqSubscribe() {
-		return seqSubscribe;
+	public String getId() {
+		return id;
 	}
-
-
-
-	public void setSeqSubscribe(int seqSubscribe) {
-		this.seqSubscribe = seqSubscribe;
-	}
-
-
 
 	public String getOrderName() {
 		return orderName;
 	}
 
-
-
-	public void setOrderName(String orderName) {
-		this.orderName = orderName;
-	}
-
-
-
 	public String getOrderPhone() {
 		return orderPhone;
 	}
 
-
-
-	public void setOrderPhone(String orderPhone) {
-		this.orderPhone = orderPhone;
+	public String getOrderPost() {
+		return orderPost;
 	}
 
-
-
-	public String getOrderAddress() {
-		return orderAddress;
+	public String getOrderRoadAddress() {
+		return orderRoadAddress;
 	}
 
-
-
-	public void setOrderAddress(String orderAddress) {
-		this.orderAddress = orderAddress;
+	public String getOrderDetailAddress() {
+		return orderDetailAddress;
 	}
-
-
 
 	public String getOrderMsg() {
 		return orderMsg;
 	}
 
-
-
-	public void setOrderMsg(String orderMsg) {
-		this.orderMsg = orderMsg;
-	}
-
-
-
 	public String getPostMsg() {
 		return postMsg;
 	}
 
+	public int getProductName() {
+		return productName;
+	}
 
+	public String getSubscribeStart() {
+		return subscribeStart;
+	}
 
-	public void setPostMsg(String postMsg) {
-		this.postMsg = postMsg;
+	public int getSubscribeTerm() {
+		return subscribeTerm;
+	}
+
+	public int getPrice() {
+		return price;
+	}
+
+	public String getPaySuccess() {
+		return paySuccess;
+	}
+
+	public String getPayId() {
+		return payId;
+	}
+
+	public String getPayTradeId() {
+		return payTradeId;
+	}
+
+	public String getPayAmount() {
+		return payAmount;
+	}
+
+	public String getPayApproval() {
+		return payApproval;
 	}
 
 
+    
 
-	@Override
-	public String toString() {
-		return "OrderDTO [orderNo=" + orderNo + ", seqSubscribe=" + seqSubscribe + ", orderName=" + orderName
-				+ ", orderPhone=" + orderPhone + ", orderAddress=" + orderAddress + ", orderMsg=" + orderMsg
-				+ ", postMsg=" + postMsg + "]";
-	}
-
-	
-
-	
-
-
-	
-
-	
-	
-	
-	
-	    
-	    
-	    
-	    
-		
 	    
 	    
 	}
