@@ -1,5 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-pageEncoding="UTF-8"%>
+<%@page import="order.orderDTO.OrderDTO"%> <%@ page language="java"
+contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%> <%@ taglib
+prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!DOCTYPE html>
 <html>
@@ -14,6 +15,7 @@ pageEncoding="UTF-8"%>
       integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
       crossorigin="anonymous"
     />
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
@@ -48,6 +50,10 @@ pageEncoding="UTF-8"%>
       }
       .ft-images {
         text-align: center;
+      }
+
+      #listTable {
+        width: 500px;
       }
     </style>
   </head>
@@ -103,55 +109,90 @@ pageEncoding="UTF-8"%>
         </div>
       </div>
       <!-- 여기까지 헤더 -->
-
-      <!-- 여기에 바디 코드 짜주셈 -->
       <div class="container">
         <div class="col">
-          <div class="row">주문상품</div>
-          <div class="row">주문일시</div>
-          <div class="row">주문자명</div>
-          <button type="button" class="btn btn-success">
-            주문내역상세보기
+          <div class="row">
+            <table id="listTable">
+              <c:forEach items="${orderList}" var="orderList">
+                <thead>
+                  <tr>
+                    <th>주문번호</th>
+                    <th>주문아이디</th>
+                    <th>주문자명</th>
+                    <th>구독시작일</th>
+                    <th>상품명</th>
+                    <th>상세내역</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <form action="/detail.order" method="post">
+                      <input type="hidden" name="orderId" value="${orderList.orderId}">
+                      <td>${orderList.orderId}</td>
+                      <td>${orderList.id}</td>
+                      <td>${orderList.orderName}</td>
+                      <td>${orderList.subscribeStart}</td>
+                      <td>${orderList.productCode}</td>
+                      <td>
+                         
+                        <button
+                          id="goToDetailBtn"
+                          type="submit"
+                          class="btn btn-primary"
+                        >
+                          바로가기
+                        </button>
+                      </td>
+                    </form>
+                  </tr>
+                </tbody>
+              </c:forEach>
+            </table>
+          </div>
+
+          <button type="button" class="btn btn-primary">
+            메인페이지로이동
           </button>
         </div>
-      </div>
 
-      <!-- 여기부터 풋터 -->
-      <div class="row justify-content-center footer">
-        <div class="col-lg-10 col-12">
-          <ul class="ft-ul">
-            <li>BoriBob Inc. 사랑시 고백구 행복동</li>
-            <li>대표 : 보리밥형제들 사업자등록번호 : 780-86-01094</li>
-            <li>
-              대표번호 : +82)-665-3430 팩스번호 : +82)-888-3430 홈페이지 :
-              petvenience.store.com
-            </li>
-            <li>CopyrightⓒBoriBob Inc. All Rights Reserved.</li>
-          </ul>
-        </div>
-        <div class="col-lg-2 col-12">
-          <ul class="ft-images">
-            <img
-              src="images/facebook_icon.png"
-              style="border-color: lightblue"
-            />
-            <img
-              src="images/instagram_icon.png"
-              style="border-color: lightblue"
-            />
-            <img
-              src="images/youtube_icon.png"
-              style="border-color: lightblue"
-            />
-          </ul>
-          <ul class="ft-ul">
-            <li><strong>고객센터</strong></li>
-            <li style="height: 8px"></li>
-            <li>오전 10시부터 오후 6시까지</li>
-            <li>토요일, 일요일, 공휴일 휴무</li>
-          </ul>
+        <!-- 여기부터 풋터 -->
+        <div class="row justify-content-center footer">
+          <div class="col-lg-10 col-12">
+            <ul class="ft-ul">
+              <li>BoriBob Inc. 사랑시 고백구 행복동</li>
+              <li>대표 : 보리밥형제들 사업자등록번호 : 780-86-01094</li>
+              <li>
+                대표번호 : +82)-665-3430 팩스번호 : +82)-888-3430 홈페이지 :
+                petvenience.store.com
+              </li>
+              <li>CopyrightⓒBoriBob Inc. All Rights Reserved.</li>
+            </ul>
+          </div>
+          <div class="col-lg-2 col-12">
+            <ul class="ft-images">
+              <img
+                src="images/facebook_icon.png"
+                style="border-color: lightblue"
+              />
+              <img
+                src="images/instagram_icon.png"
+                style="border-color: lightblue"
+              />
+              <img
+                src="images/youtube_icon.png"
+                style="border-color: lightblue"
+              />
+            </ul>
+            <ul class="ft-ul">
+              <li><strong>고객센터</strong></li>
+              <li style="height: 8px"></li>
+              <li>오전 10시부터 오후 6시까지</li>
+              <li>토요일, 일요일, 공휴일 휴무</li>
+            </ul>
+          </div>
         </div>
       </div>
     </div>
+    <script></script>
   </body>
 </html>

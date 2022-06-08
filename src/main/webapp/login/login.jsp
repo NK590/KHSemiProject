@@ -110,7 +110,7 @@ body {
 					</script>
 				</c:if>
 
-				<form id="loginForm" action="login.mem" method="post">
+				<form id="loginForm" action="/login.mem" method="post">
 					<div class="row">
 						<div class="content1" style="border: 1px solid lightgrey">
 
@@ -152,11 +152,8 @@ body {
 
 				<script>
 					// 로그인 버튼 눌렀을 때 값 있으면 submit
-					$("#loginBtn").on(
-							"click",
-							function() {
-								if ($("#id").val() === ""
-										|| $("#password").val() === "") {
+					$("#loginBtn").on("click", function() {
+								if ($("#id").val() === "" || $("#password").val() === "") {
 									alert("아이디 혹은 비밀번호를 입력하세요.");
 									return;
 								}

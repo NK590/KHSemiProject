@@ -106,20 +106,30 @@ pageEncoding="UTF-8"%>
 
       <!-- 여기에 바디 코드 짜주셈 -->
       <div class="container">
-        <div class="col">
-          <div class="row">주문상품</div>
-          <div class="row">주문일시</div>
-          <div class="row">주문자 연락처</div>
-          <div class="row">주문자 주소</div>
-          <div class="row">주문자 결제금액</div>
-          <div class="row">주문자 배송상태</div>
-          <div class="row">주문자 배송메시지</div>
-          <div class="row">주문자 주문메시지</div>
+        <ul class="list-group">
+          <li class="list-group-item">
+            배송상태 = ${detailDTO.deliveryStatus}
+          </li>
+          <li class="list-group-item">
+            주문상품코드 = ${detailDTO.productCode}
+          </li>
+          <li class="list-group-item">주문자명 = ${detailDTO.orderName}</li>
 
-          <button type="button" class="btn btn-success">
-            메인페이지로 이동
-          </button>
-        </div>
+          <li class="list-group-item">
+            배송지주소 =
+            ${detailDTO.orderPost}-${detailDTO.orderRoadAddress}-${detailDTO.orderDetailAddress}
+          </li>
+          <li class="list-group-item">
+            결제금액 = ${detailDTO.payApproval} 원
+          </li>
+          <li class="list-group-item">
+            구독기간 = ${detailDTO.subscribeTerm} 개월
+          </li>
+          <li class="list-group-item">배송메시지 = ${detailDTO.postMsg}</li>
+          <li class="list-group-item">주문메시지 = ${detailDTO.orderMsg}</li>
+        </ul>
+        <button type="button" class="btn btn-primary">메인페이지로이동</button>
+        <button type="button" class="btn btn-primary">리뷰페이지로이동</button>
       </div>
 
       <!-- 여기부터 풋터 -->

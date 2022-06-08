@@ -1,11 +1,14 @@
 package com.boribob.controller;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import com.boribob.dao.SubscribeDAO;
 
 @WebServlet("*.sub")
 public class SubscribeController extends HttpServlet {
@@ -22,6 +25,16 @@ public class SubscribeController extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=utf-8");
 		
-		
+		if (uri.equals("/subscribeInput.sub")) {
+			int subscribeMonth = Integer.parseInt(request.getParameter("subscribeType"));
+			
+			try {
+				SubscribeDAO subscribeDao = new SubscribeDAO();
+				int price = subscribeDao.selectPriceByProductCode(subscribeMonth);
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
 	}
 }

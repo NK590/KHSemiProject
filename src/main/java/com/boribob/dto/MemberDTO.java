@@ -4,8 +4,8 @@ public class MemberDTO {
 	private String id;
 	private String password;
 	private String name;
-	private String roadAddress;
 	private String post;
+	private String roadAddress;	
 	private String detailAddress;
 	private String phone;
 	
@@ -16,8 +16,8 @@ public class MemberDTO {
 		this.id = id;
 		this.password = password;
 		this.name = name;
-		this.roadAddress = roadAddress;
 		this.post = post;
+		this.roadAddress = roadAddress;
 		this.detailAddress = detailAddress;
 		this.phone = phone;
 	}
@@ -41,18 +41,18 @@ public class MemberDTO {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public String getRoadAddress() {
-		return roadAddress;
-	}
-	public void setRoadAddress(String roadAddress) {
-		this.roadAddress = roadAddress;
-	}
 	public String getPost() {
 		return post;
 	}
 	public void setPost(String post) {
 		this.post = post;
 	}
+	public String getRoadAddress() {
+		return roadAddress;
+	}
+	public void setRoadAddress(String roadAddress) {
+		this.roadAddress = roadAddress;
+	}	
 	public String getDetailAddress() {
 		return detailAddress;
 	}
@@ -65,10 +65,13 @@ public class MemberDTO {
 	public void setPhone(String phone) {
 		this.phone = phone;
 	}
+
+	
 	@Override
 	public String toString() {
-		return "MemberDTO [id=" + id + ", password=" + password + ", name=" + name + ", roadAddress=" + roadAddress
-				+ ", post=" + post + ", detailAddress=" + detailAddress + ", phone=" + phone + 
-				"]";
+		return "MemberDTO [id=" + id + ", password=" + password + ", name=" + name + ", post=" + post
+				+ ", roadAddress=" + roadAddress + ", detailAddress=" + detailAddress + ", phone=" + phone + "]";
+
+
 	}
 }

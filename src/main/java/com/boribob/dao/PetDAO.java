@@ -1,7 +1,12 @@
 package com.boribob.dao;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 import javax.naming.Context;
@@ -34,7 +39,7 @@ public class PetDAO {
 	public int insert(PetDTO dto) throws Exception {
 		String sql = "insert into tbl_pet values (?, ?, ?, ?, ?, ?, ?)";
 		try(Connection con = this.getConnection();
-			PreparedStatement pstmt = con.prepareCall(sql)) {
+			PreparedStatement pstmt = con.prepareStatement(sql)) {
 			
 			pstmt.setString(1, dto.getId());
 			pstmt.setString(2, dto.getPetName());
@@ -50,7 +55,33 @@ public class PetDAO {
 	}
 	
 	// 아이디로 펫 정보 확인
-	
+	public PetDTO selectPetinfoById(String id) throws Exception {
+		String sql = "select * from tbl_pet where id = ?";
+		try(Connection con = this.getConnection();
+			PreparedStatement pstmt = con.prepareStatement(sql)) {
+			
+			pstmt.setString(1, id);
+
+			ResultSet rs = pstmt.executeQuery();
+			PetDTO dto = new PetDTO();
+			if (rs.next()) {
+				String petName = rs.getString("pet_name");
+				int petAge = rs.getInt("pet_age");
+				int petAllergy = rs.getInt("pet_allergy");
+				int petWeight = rs.getInt("pet_weight");
+				String petKind = rs.getString("pet_kind");
+				String petType = rs.getString("pet_type");
+				
+				dto.setPetName(petName);
+				dto.setPetAge(petAge);
+				dto.setPetAllergy(petAllergy);
+				dto.setPetWeight(petWeight);
+				dto.setPetKind(petKind);
+				dto.setPetType(petType);
+			}
+			return dto;
+		}
+	}
 	
 	// 펫의 정보를 비트 배열로 저장
 	public ArrayList<Integer> getPetStatus(PetDTO dto) throws Exception {
@@ -80,5 +111,17 @@ public class PetDAO {
 	public int getProductNum(ArrayList<Integer> petDetails) throws Exception {
 		Algorithms algorithm = new Algorithms();
 		return algorithm.bitmask(petDetails, 0);
+	}
+	
+	// 생년월일로 만나이 계산
+	public int getPetAge(String date) {
+		LocalDate now = LocalDate.now();
+		LocalDate parseDate = LocalDate.parse(date, DateTimeFormatter.ofPattern("yyyyMMdd"));
+		int age = now.minusYears(parseDate.getYear()).getYear();
+		
+		if (parseDate.plusYears(age).isAfter(now)) {
+			age -= 1;
+		}
+		return age;
 	}
 }

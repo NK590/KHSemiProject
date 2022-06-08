@@ -33,7 +33,7 @@ public class SubscribeDAO {
 	public int insert(SubscribeDTO dto) throws Exception {
 		String sql = "insert into tbl_subscribe values (seq_subscribe, ?, sysdate, ?)";
 		try(Connection con = this.getConnection();
-			PreparedStatement pstmt = con.prepareCall(sql)) {
+			PreparedStatement pstmt = con.prepareStatement(sql)) {
 		
 			pstmt.setInt(1, dto.getProductCode());
 			pstmt.setInt(2, dto.getSubscribeTerm());
@@ -49,7 +49,7 @@ public class SubscribeDAO {
 		String sql = "select s.* form tbl_subscribe s join tbl_member m on s.id = m.id where m.id = ?";
 
 		try(Connection con = this.getConnection();
-			PreparedStatement pstmt = con.prepareCall(sql)) {
+			PreparedStatement pstmt = con.prepareStatement(sql)) {
 		
 			pstmt.setString(1, id);
 			
@@ -67,6 +67,24 @@ public class SubscribeDAO {
 				dto.setSubscribeTerm(subscribeTerm);
 			}
 			return dto;
+		}
+	}
+	
+	// 상품 번호로 상품 가격 찾기
+	public int selectPriceByProductCode(int productCode) throws Exception {
+		String sql = "select product_price from tbl_product where product_code = ?";
+		
+		try(Connection con = this.getConnection();
+			PreparedStatement pstmt = con.prepareStatement(sql)) {
+		
+			pstmt.setInt(1, productCode);
+			
+			ResultSet rs = pstmt.executeQuery();
+			int price = 0;
+			if (rs.next()) {
+				price = rs.getInt("product_price");
+			}
+			return price;
 		}
 	}
 }

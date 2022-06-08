@@ -119,7 +119,7 @@
                     <input type="text" name="petType" id="pet-type" style="display: none;">
                     <div class="col-12 ">
                         우리 아이의 견/묘종은
-                        <select style="display:inline; width: 200px;" class="form-select" id="pet-kind">
+                        <select style="display:inline; width: 200px;" class="form-select" id="pet-kind" name="petKind">
                             <option value="1">테스트</option>
                             <option value="2">닥스훈트</option>
                             <option value="3">브리티쉬 숏헤어</option>
@@ -143,7 +143,7 @@
                     </div>
                     <div class="col-12">
                         우리 아이의 체형은
-                        <select aria-label="Default select example" style="display:inline; width: 200px;" class="form-select">
+                        <select style="display:inline; width: 200px;" class="form-select" id='pet-weight' name='petWeight'>
                             <option value="0">보통</option>
                             <option value="1">통통</option>
                         </select>

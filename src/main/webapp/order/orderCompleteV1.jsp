@@ -106,16 +106,18 @@ pageEncoding="UTF-8"%>
 
       <!-- 여기에 바디 코드 짜주셈 -->
       <div class="container">
-        <div class="col">
-          <div class="row">주문해주셔서 감사합니다.</div>
-          <div class="row">주문결제내역</div>
-          <div class="row">주문자명</div>
-          <div class="row">주문번호</div>
-          <div class="row">주문상품금액</div>
-          <button type="button" class="btn btn-success">메인페이로이동</button>
+        <div class="row">
+          <div class="col">
+            <p>주문해주셔서 감사합니다</p>
+          </div>
         </div>
+        <button id="goToMain" type="button" class="btn btn-secondary">
+          메인페이지로이동
+        </button>
+        <button id="myPage" type="button" class="btn btn-secondary">
+          상품페이지로이동
+        </button>
       </div>
-
       <!-- 여기부터 풋터 -->
       <div class="row justify-content-center footer">
         <div class="col-lg-10 col-12">

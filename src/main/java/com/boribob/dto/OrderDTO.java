@@ -15,7 +15,7 @@ public class OrderDTO {
     private String orderMsg; // 주문메시지 
     private String postMsg; //  배송메시지
     
-    private int productName; // 상품코드 
+    private int productCode; // 상품코드 
     private String subscribeStart; // 구독시작일 
     private int subscribeTerm; //구독 기간 
     private int price; // 가격 
@@ -26,15 +26,16 @@ public class OrderDTO {
     private String payAmount;   //  결제금액 
     private String payApproval; //  카드승인번호 
     
+    private String deliveryStatus; // 배송상태 
+    private String expectedArrival; //배송예정일
+    private String deliveryCount;
+    
     public OrderDTO(){}
-    
-    
-    
 
 	public OrderDTO(Integer orderId, String id, String orderName, String orderPhone, String orderPost,
-			String orderRoadAddress, String orderDetailAddress, String orderMsg, String postMsg, int productName,
+			String orderRoadAddress, String orderDetailAddress, String orderMsg, String postMsg, int productCode,
 			String subscribeStart, int subscribeTerm, int price, String paySuccess, String payId, String payTradeId,
-			String payAmount, String payApproval) {
+			String payAmount, String payApproval, String deliveryStatus, String expectedArrival, String deliveryCount) {
 		super();
 		this.orderId = orderId;
 		this.id = id;
@@ -45,7 +46,7 @@ public class OrderDTO {
 		this.orderDetailAddress = orderDetailAddress;
 		this.orderMsg = orderMsg;
 		this.postMsg = postMsg;
-		this.productName = productName;
+		this.productCode = productCode;
 		this.subscribeStart = subscribeStart;
 		this.subscribeTerm = subscribeTerm;
 		this.price = price;
@@ -54,15 +55,15 @@ public class OrderDTO {
 		this.payTradeId = payTradeId;
 		this.payAmount = payAmount;
 		this.payApproval = payApproval;
+		this.deliveryStatus = deliveryStatus;
+		this.expectedArrival = expectedArrival;
+		this.deliveryCount = deliveryCount;
 	}
 
-
-
-
 	public OrderDTO(String id, String orderName, String orderPhone, String orderPost, String orderRoadAddress,
-			String orderDetailAddress, String orderMsg, String postMsg, int productName, String subscribeStart,
+			String orderDetailAddress, String orderMsg, String postMsg, int productCode, String subscribeStart,
 			int subscribeTerm, int price, String paySuccess, String payId, String payTradeId, String payAmount,
-			String payApproval) {
+			String payApproval, String deliveryStatus, String expectedArrival, String deliveryCount) {
 		super();
 		this.id = id;
 		this.orderName = orderName;
@@ -72,7 +73,7 @@ public class OrderDTO {
 		this.orderDetailAddress = orderDetailAddress;
 		this.orderMsg = orderMsg;
 		this.postMsg = postMsg;
-		this.productName = productName;
+		this.productCode = productCode;
 		this.subscribeStart = subscribeStart;
 		this.subscribeTerm = subscribeTerm;
 		this.price = price;
@@ -81,6 +82,9 @@ public class OrderDTO {
 		this.payTradeId = payTradeId;
 		this.payAmount = payAmount;
 		this.payApproval = payApproval;
+		this.deliveryStatus = deliveryStatus;
+		this.expectedArrival = expectedArrival;
+		this.deliveryCount = deliveryCount;
 	}
 
 	public Integer getOrderId() {
@@ -119,8 +123,8 @@ public class OrderDTO {
 		return postMsg;
 	}
 
-	public int getProductName() {
-		return productName;
+	public int getProductCode() {
+		return productCode;
 	}
 
 	public String getSubscribeStart() {
@@ -154,6 +158,42 @@ public class OrderDTO {
 	public String getPayApproval() {
 		return payApproval;
 	}
+
+	public String getDeliveryStatus() {
+		return deliveryStatus;
+	}
+
+	public String getExpectedArrival() {
+		return expectedArrival;
+	}
+
+	public String getDeliveryCount() {
+		return deliveryCount;
+	}
+
+	
+	
+
+
+	
+	
+	
+	
+	
+	
+	
+
+
+	
+
+
+
+
+	
+	
+
+
+
 
 
     

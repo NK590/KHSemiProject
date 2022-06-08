@@ -19,8 +19,8 @@ import javax.servlet.http.HttpSession;
 
 import com.boribob.dao.MemberDAO;
 import com.boribob.dto.MemberDTO;
+import com.boribob.mail.SendMail;
 import com.boribob.utils.EncryptionUtils;
-import com.boribob.utils.Gmail;
 
 @WebServlet("*.mem") 
 public class MemberController extends HttpServlet {
@@ -65,13 +65,17 @@ public class MemberController extends HttpServlet {
 			}catch(Exception e) {
 				e.printStackTrace();
 			}
-		}else if(uri.equals("/certificationEmail.mem")) {
+		}else if(uri.equals("/certificationEmail.mem")) { // 이메일 인증버튼 누르면~
+			String email = request.getParameter("email");
+			System.out.println(email);
 			
-			System.out.print("certificationEmail");
-			String crtCode = sendEmail();
-			System.out.print("crtCode : "+ crtCode);
-			request.setAttribute("crtCode", crtCode);
-			request.getRequestDispatcher("/member/popup.jsp").forward(request, response);
+			System.out.println("certificationEmail");
+			SendMail sm = new SendMail();
+			int randomNumber = sm.compare(email);
+			System.out.println("randomNumber : " + randomNumber);
+			
+			
+			response.getWriter().append(String.valueOf(randomNumber));
 			
 		}else if(uri.equals("/postCodePopup.mem")) { // 우편번호 찾기 누르면 뜨는 팝업 페이지
 			request.setAttribute("idx", "post");
@@ -81,19 +85,19 @@ public class MemberController extends HttpServlet {
 			request.getRequestDispatcher("/member/popup.jsp").forward(request, response);
 			
 			
-		}else if(uri.equals("/login.mem")) { // 회원가입 요청
+		}else if(uri.equals("/signup.mem")) { // 회원가입 요청
 			
 			
 			String id = request.getParameter("id");
 			String password = request.getParameter("password");
 			String name = request.getParameter("name");
-			String roadAddress = request.getParameter("roadAddress");
 			String post = request.getParameter("post");
+			String roadAddress = request.getParameter("roadAddress");			
 			String detailAddress = request.getParameter("detailAddress");
 			String phone = request.getParameter("phone");
 			
-			System.out.println(id+" : "+password+" : "+name+" : "+roadAddress
-					+" : "+post+" : "+detailAddress+" : "+phone);
+			System.out.println(id+" : "+password+" : "+name+" : "+post
+					+" : "+roadAddress+" : "+detailAddress+" : "+phone);
 			
 			MemberDAO dao = new MemberDAO();
 			try {
@@ -101,13 +105,16 @@ public class MemberController extends HttpServlet {
 				password = EncryptionUtils.getSHA512(password);
 				
 				System.out.println("하고 난 후 : " +password);
-				MemberDTO rs = dao.selectById(id);
-				if(rs==null) {
+				int rs = dao.insert(new MemberDTO(id, password, name, post, roadAddress, detailAddress, phone));
+				if(rs > 0) {
 					response.sendRedirect("/login/login.jsp");
 				}
 			}catch(Exception e) {
 				e.printStackTrace();
-			}		
+			}
+			
+			
+			
 		}else if(uri.equals("/login.mem")) { //로그인 요청
 			String id = request.getParameter("id");
 			String password = request.getParameter("password");
@@ -132,10 +139,11 @@ public class MemberController extends HttpServlet {
 			}catch(Exception e) {
 				e.printStackTrace();
 			}
+			request.getRequestDispatcher("/index.jsp").forward(request, response);
+		}catch(Exception e) {
+			e.printStackTrace();
+		}	
 		}
 	}
-
-
-	
 }
    

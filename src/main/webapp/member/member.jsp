@@ -101,7 +101,7 @@ body {
 	<!-- 여기에 바디 코드 짜주셈 -->
 
 	<div class="container" style="border: 1px solid lightgrey">
-		<form id="memberForm" action="/login/login.jsp" method="post">
+		<form id="memberForm" action="/signup.mem" method="post">
 			<div class="row">
 				<div class="col-12 mb-5 d-flex justify-content-center">
 					<h2>회원 정보 입력</h2>
@@ -126,7 +126,7 @@ body {
 					<label for="password" class="form-label">비밀번호</label>
 				</div>
 				<div class="col-12 mb-2">
-					<input type="password" class="form-control" id="pw" name="pw">
+					<input type="password" class="form-control" id="pw" name="password">
 				</div>
 			</div>
 
@@ -152,7 +152,7 @@ body {
 			<div class="row p-2">
 				<div class="col">
 					<input type="text" class="form-control" id="postCode"
-						name="postCode" placeholder="우편번호">
+						name="post" placeholder="우편번호">
 				</div>
 
 				<div class="col">
@@ -162,14 +162,14 @@ body {
 				<div class="row p-2">
 					<div class="col">
 						<input type="text" class="form-control" id="roadAddr"
-							name="roadAddr" placeholder="도로명주소">
+							name="roadAddress" placeholder="도로명주소">
 					</div>
 				</div>
 				<span id="guide" style="color: #999; display: none"></span>
 				<div class="row p-2">
 					<div class="col">
 						<input type="text" class="form-control" id="detailAddr"
-							name="detailAddr" placeholder="상세주소">
+							name="detailAddress" placeholder="상세주소">
 					</div>
 				</div>
 			</div>
@@ -200,8 +200,7 @@ body {
 						<input type="text" id="phone" name="phone">
 					</div>
 
-					<div
-						style="border: 1px solid lightgrey; width: 600px; height: 400px;">
+					<div style="border: 1px solid lightgrey; width: 600px; height: 400px;">
 						<span>이용약관</span>
 					</div>
 				</div>
