@@ -69,13 +69,15 @@ public class ReviewDAO {
 
 	//작성된 글을 테이블에 넣기 ok
 	public int insert(ReviewDTO dto) throws Exception{
-		String sql = "insert into tbl_review values(seq_review.nextval,?,?,?,sysdate)";
-		try (Connection con = bds.getConnection(); PreparedStatement pstmt = con.prepareStatement(sql)) {
+		String sql = "insert into tbl_review values(seq_review.nextval,?,?,?,?,sysdate,null)";
+		try (Connection con = bds.getConnection();
+			PreparedStatement pstmt = con.prepareStatement(sql)) {
 	
-			pstmt.setString(1, dto.getId());
-			pstmt.setString(2, dto.getReviewTitle());
-			pstmt.setString(3, dto.getReviewContent());
-
+			pstmt.setInt(1, dto.getProductCode());
+			pstmt.setString(2, dto.getId());
+			pstmt.setString(3, dto.getReviewTitle());
+			pstmt.setString(4, dto.getReviewContent());
+		
 			int rs = pstmt.executeUpdate();
 			return rs;
 		}

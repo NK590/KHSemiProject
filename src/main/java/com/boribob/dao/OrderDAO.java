@@ -192,6 +192,63 @@ public class OrderDAO {
 		}
 	}
 	
+	public ArrayList<OrderDTO> findAllList()throws Exception { // 전체주문 검색 
+		String sql = "select  * from tbl_order";
+		try (Connection con = this.getConnection(); PreparedStatement pstmt = con.prepareStatement(sql);) {
+			
 
+			ResultSet rs = pstmt.executeQuery();
+			ArrayList<OrderDTO> list = new ArrayList<OrderDTO>();
+
+			while (rs.next()) {
+				Integer orderId = rs.getInt("order_id");
+				String id = rs.getString("member_id");
+				String orderName = rs.getString("order_name");
+				String orderPhone = rs.getString("order_phone");
+				String orderPost = rs.getString("order_post");
+				String orderRoadAddress = rs.getString("order_road_address");
+				String orderDetailAddress = rs.getString("order_detail_address");
+				String orderMsg = rs.getString("order_msg");
+				String postMsg = rs.getString("post_msg");
+				int productCode = rs.getInt("product_code");
+				String subscribeStart = rs.getString("subscribeStart");
+				int subscribeTerm = rs.getInt("subscribeTerm"); 
+				int price = rs.getInt("price");
+				
+				String paySuccess = rs.getString("pay_success");
+				String payId = rs.getString("pay_id");
+				String payTradeId = rs.getString("pay_tradeid");
+				String payAmount = rs.getString("pay_amount");
+				String payApproval = rs.getString("pay_approval");
+				
+				String deliveryStatus = rs.getString("delivery_status");
+				String expectedArrival = rs.getString("expected_arrival");
+				String deliveryCount = rs.getString("delivery_count");
+			     
+			     list.add(new OrderDTO(orderId,id,orderName,orderPhone,orderPost,orderRoadAddress,orderDetailAddress
+							,orderMsg,postMsg,productCode,subscribeStart,subscribeTerm,
+							price,paySuccess,payId,payTradeId,payAmount,payApproval,deliveryStatus,
+							expectedArrival,deliveryCount));
+			}
+			return list;
+
+		}
+	}
+
+	public int modifyOrder(Integer orderId,String deliveryStatus,String expectedArraival, String deliveryCount) throws Exception { // 배송정보 수정 
+		String sql = "update tbl_order set delivery_status =? ,expected_arrival =?,delivery_count=? where order_id =?";
+				
+			try (Connection con = getConnection(); PreparedStatement pstmt = con.prepareStatement(sql);) {
+			
+			pstmt.setString(1, deliveryStatus); // 배송상태 
+			pstmt.setString(2,expectedArraival ); // 배송예정일 
+			pstmt.setString(3,deliveryCount ); // 배송회차 
+			pstmt.setInt(4,orderId ); // -> 회원 아이디
+			int rs = pstmt.executeUpdate();
+		
+			return rs;
+		}
+
+	}
 
 }

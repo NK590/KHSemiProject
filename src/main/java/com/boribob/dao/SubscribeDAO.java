@@ -69,22 +69,4 @@ public class SubscribeDAO {
 			return dto;
 		}
 	}
-	
-	// 상품 번호로 상품 가격 찾기
-	public int selectPriceByProductCode(int productCode) throws Exception {
-		String sql = "select product_price from tbl_product where product_code = ?";
-		
-		try(Connection con = this.getConnection();
-			PreparedStatement pstmt = con.prepareStatement(sql)) {
-		
-			pstmt.setInt(1, productCode);
-			
-			ResultSet rs = pstmt.executeQuery();
-			int price = 0;
-			if (rs.next()) {
-				price = rs.getInt("product_price");
-			}
-			return price;
-		}
-	}
 }

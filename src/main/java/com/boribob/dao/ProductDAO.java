@@ -185,8 +185,6 @@ public class ProductDAO {
 			
 		}
 	}
-	
-	
 }
 
 

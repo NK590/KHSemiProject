@@ -185,12 +185,12 @@ body {
 						</div>
 						<div class="col-10 p-2">
 							<input type="text" placeholder="제목을 입력해주세요" id="review-title"
-								name="title">
+								name="reviewTitle">
 							<div class="row"></div>
 						</div>
 					</div>
 					<div class="cont">
-						<textarea class="form-control" id="review-content" name="content"
+						<textarea class="form-control" id="review-content" name="reviewContent"
 							placeholder="어떤 점이 좋았나요?"></textarea>
 					</div>
 				</div>

@@ -101,23 +101,23 @@
         <!-- 여기에 바디 코드 짜주셈 -->
         <form action = "/inquiryWriteProc.iq" method="post" id="inquiry-write-form">
         	<div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <h4>문의게시판</h4> 
-                </div>
-            </div>      
-            <div class="row pb-3">
-                <div class="col-2 col-form-label">제목</div>
-                <div class="col-10">
-                    <input type="text" class="form-control" id="inquiry-title" name="inquiryTitle">
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-2 form-label">내용</div>
-                <div class="col-10">
-                    <textarea class="form-control" id="inquiry-content" name="inquiryContent" rows="20"></textarea>
-                </div>
-            </div>
+	            <div class="row">
+	                <div class="col-12">
+	                    <h4>문의게시판</h4> 
+	                </div>
+	            </div>      
+	            <div class="row pb-3">
+	                <div class="col-2 col-form-label">제목</div>
+	                <div class="col-10">
+	                    <input type="text" class="form-control" id="inquiry-title" name="inquiryTitle">
+	                </div>
+	            </div>
+	            <div class="row">
+	                <div class="col-2 form-label">내용</div>
+	                <div class="col-10">
+	                    <textarea class="form-control" id="inquiry-content" name="inquiryContent" rows="20"></textarea>
+	                </div>
+	            </div>
         	</div>
         </form>
         <div class="buttonBox d-grid gap-2 d-flex justify-content-center">

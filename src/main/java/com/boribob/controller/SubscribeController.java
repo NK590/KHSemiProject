@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.boribob.dao.SubscribeDAO;
+import com.boribob.dao.ProductDAO;
 
 @WebServlet("*.sub")
 public class SubscribeController extends HttpServlet {
@@ -29,8 +29,8 @@ public class SubscribeController extends HttpServlet {
 			int subscribeMonth = Integer.parseInt(request.getParameter("subscribeType"));
 			
 			try {
-				SubscribeDAO subscribeDao = new SubscribeDAO();
-				int price = subscribeDao.selectPriceByProductCode(subscribeMonth);
+				ProductDAO productDao = new ProductDAO();
+//				int price = (productDao.selectByCode());
 				
 			} catch (Exception e) {
 				e.printStackTrace();

@@ -56,7 +56,8 @@ public class InquiryController extends HttpServlet {
 		}else if(uri.equals("/inquiryWriteProc.iq")) {//문의글쓰기 페이지
 			String inquiryTitle = request.getParameter("inquiryTitle");
 			String inquiryContent = request.getParameter("inquiryContent");
-			System.out.println(inquiryTitle + inquiryContent);
+			System.out.println("글 제목 : " + inquiryTitle);
+			System.out.println("글 내용 : " + inquiryContent);
 			
 			InquiryDAO dao = new InquiryDAO();
 			MemberDTO dto = (MemberDTO)request.getSession().getAttribute("loginSession");
@@ -75,7 +76,7 @@ public class InquiryController extends HttpServlet {
 			System.out.println(seqInquiry);
 			InquiryDAO dao = new InquiryDAO();
 			try{
-				InquiryDTO dto = dao.selectBySq(seqInquiry);
+				InquiryDTO dto = dao.selectBySeq(seqInquiry);
 				request.setAttribute("dto", dto);
 				Gson gson = new Gson();
 				String rs = gson.toJson(dto);

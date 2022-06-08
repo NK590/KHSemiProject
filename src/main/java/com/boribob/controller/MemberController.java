@@ -139,10 +139,6 @@ public class MemberController extends HttpServlet {
 			}catch(Exception e) {
 				e.printStackTrace();
 			}
-			request.getRequestDispatcher("/index.jsp").forward(request, response);
-		}catch(Exception e) {
-			e.printStackTrace();
-		}	
 		}
 	}
 }

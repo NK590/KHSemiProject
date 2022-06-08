@@ -26,21 +26,20 @@ public class InquiryDAO {
 			}catch(Exception e) {
 				e.printStackTrace();
 			}
-		
 		}
 	
 	public int insert (InquiryDTO dto)throws Exception{//데이터삽입
-		String sql = "insert into tbl_inquiry values(seq_inquiry.nextval,?,?,?,sysdate)";
-		try(Connection con = bds.getConnection(); 
-			PreparedStatement pstmt = con.prepareStatement(sql);){
-			pstmt.setString(1, dto.getId());
-			pstmt.setString(2, dto.getInquiryTitle());
-			pstmt.setString(3, dto.getInquiryContent());
-			
-			int rs = pstmt.executeUpdate();
-			return rs;
-		}
-	}
+	      String sql = "insert into tbl_inquiry values(seq_inquiry.nextval,?,?,?,sysdate,null) ";
+	      try(Connection con = bds.getConnection(); 
+	         PreparedStatement pstmt = con.prepareStatement(sql);){
+	         pstmt.setString(1, dto.getId());
+	         pstmt.setString(2, dto.getInquiryTitle());
+	         pstmt.setString(3, dto.getInquiryContent());
+	         
+	         int rs = pstmt.executeUpdate();
+	         return rs;
+	      }
+	   }
 	public InquiryDTO selectBySeq(int seqInquiry)throws Exception {//seqInquiry로 문의글 찾기
 		String sql = "select * from tbl_inquiry where seq_inquiry=? ";
 		try(Connection con = bds.getConnection();

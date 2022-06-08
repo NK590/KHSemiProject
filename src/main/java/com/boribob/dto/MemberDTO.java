@@ -10,7 +10,7 @@ public class MemberDTO {
 	private String phone;
 	
 	public MemberDTO() {}
-	public MemberDTO(String id, String password, String name, String roadAddress, String post, String detailAddress,
+	public MemberDTO(String id, String password, String name, String post, String roadAddress, String detailAddress,
 			String phone) {
 		super();
 		this.id = id;

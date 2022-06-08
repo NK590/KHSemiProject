@@ -33,8 +33,8 @@ public class MemberDAO {
 			pstmt.setString(1, dto.getId());
 			pstmt.setString(2, dto.getPassword());
 			pstmt.setString(3, dto.getName());
-			pstmt.setString(4, dto.getRoadAddress());
-			pstmt.setString(5, dto.getPost());
+			pstmt.setString(4, dto.getPost());
+			pstmt.setString(5, dto.getRoadAddress());
 			pstmt.setString(6, dto.getDetailAddress());
 			pstmt.setString(7, dto.getPhone());
 			
@@ -70,8 +70,8 @@ public class MemberDAO {
 			PreparedStatement pstmt = con.prepareStatement(sql);){
 			pstmt.setString(1, dto.getPassword());
 			pstmt.setString(2, dto.getName());
-			pstmt.setString(3, dto.getRoadAddress());
-			pstmt.setString(4, dto.getPost());
+			pstmt.setString(3, dto.getPost());
+			pstmt.setString(4, dto.getRoadAddress());
 			pstmt.setString(5, dto.getDetailAddress());
 			pstmt.setString(6, dto.getPhone());
 
