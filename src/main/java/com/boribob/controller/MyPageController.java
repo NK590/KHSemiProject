@@ -41,17 +41,19 @@ public class MyPageController extends HttpServlet {
 		System.out.println("uri : " + uri);
 
 		if (uri.equals("/mypage.my")) { // 마이페이지의 첫페이지는 항상 나의 구독페이지
-//
-//			HttpSession session = request.getSession();
-//			MemberDTO dto = (MemberDTO) session.getAttribute("loginSession");
-//			String id = dto.getId();
-			String id = "test";
+
+			HttpSession session = request.getSession();
+			MemberDTO dto = (MemberDTO) session.getAttribute("loginSession");
+			String id = dto.getId();
+			
 			
 			SubscribeDAO dao = new SubscribeDAO();
 			ProductDAO pDao = new ProductDAO();
+			
+			
 			try{
-				  SubscribeDTO subscribe =  dao.selectSubscribesById(id);  // dao의 리턴값에 else{return null;} 추가 필요해 보임
-				   if(subscribe!= null) { 
+				  SubscribeDTO subscribe =  dao.selectSubscribesById(id);  
+				   if(dao.isSubscribedId(id)) { 
 					   int productCode = subscribe.getProductCode();  // 구독 상품의 상품코드로 해당 상품의 정보 뽑아오기
 					   ProductDTO pDto = pDao.selectByCode(productCode);
 					   
@@ -160,9 +162,9 @@ public class MyPageController extends HttpServlet {
 			}catch(Exception e) {e.printStackTrace();
 			}
 
-		}	else if(uri.equals("/review.my")) {  // 마이페이지에서 나의 리뷰내역 확인 
-			response.sendRedirect("/mypage/review.jsp");
-			
+		}	
+//			else if(uri.equals("/review.my")) {  // 마이페이지에서 나의 리뷰내역 확인 
+//						
 //			HttpSession session = request.getSession();
 //			MemberDTO dto = (MemberDTO) session.getAttribute("loginSession");
 //			String id = dto.getId();
@@ -176,8 +178,8 @@ public class MyPageController extends HttpServlet {
 //			}catch(Exception e) {e.printStackTrace();
 //			}
 //			request.getRequestDispatcher("/mypage/review.jsp").forward(request, response);						
-			
-		}
+//			
+//		}
 
 	}
 

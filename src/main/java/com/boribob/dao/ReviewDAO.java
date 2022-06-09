@@ -29,6 +29,33 @@ public class ReviewDAO {
 		}
 	
 	}
+	
+	// 마이페이지에서 내가 쓴 후기 띄워주기
+		public ReviewDTO selectById(String id) throws Exception{
+			String sql = "SELECT * FROM TBL_review WHERE id = ?";
+
+			try(Connection con = bds.getConnection();
+					PreparedStatement pstmt = con.prepareStatement(sql);){
+
+				pstmt.setString(1, id);
+				ResultSet rs = pstmt.executeQuery();
+
+				if(rs.next()) {
+					int seqReview = rs.getInt("seq_review");
+					int productCode = rs.getInt("product_code");
+					String reviewTitle = rs.getString("review_title");
+					String reviewContent = rs.getString("review_conntent");
+					String productImg = rs.getString("product_img");
+					String reviewDate = dateToString(rs.getDate("review_date"));
+					ReviewDTO dto = new ReviewDTO(seqReview, productCode, id, reviewTitle, reviewContent, productImg, reviewDate);
+					return dto;
+				}
+				return null;
+			}
+		} 
+	
+	
+	
 	//게시물에 번호 부여하기
 	public int getNewSeq() throws Exception{
 		String sql = "select seq_review.nextval from dual";

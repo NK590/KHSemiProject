@@ -43,25 +43,25 @@ public class MemberDAO {
 		}
 	}
 	public ArrayList<MemberDTO> selectAll()throws Exception{
-		String sql = "select * from tbl_member";
-		try(Connection con = bds.getConnection(); 
-			PreparedStatement pstmt = con.prepareStatement(sql);){
-			ResultSet rs = pstmt.executeQuery();
-			ArrayList<MemberDTO> memberList = new ArrayList<>();
-			
-			while(rs.next()) {
-				String id = rs.getString("id");
-				String password = rs.getString("password");
-				String name = rs.getString("name");
-				String roadAddress = rs.getString("roadAddress");
-				String post = rs.getString("post");
-				String detailAddress = rs.getString("detailAddress");
-				String phone = rs.getString("phone");
-				memberList.add(new MemberDTO(id,password,name,roadAddress,post,detailAddress,phone));
-				
-			}return memberList;
-		}
-	}
+	      String sql = "select * from tbl_member";
+	      try(Connection con = bds.getConnection(); 
+	         PreparedStatement pstmt = con.prepareStatement(sql);){
+	         ResultSet rs = pstmt.executeQuery();
+	         ArrayList<MemberDTO> memberList = new ArrayList<>();
+	         
+	         while(rs.next()) {
+	            String id = rs.getString("id");
+	            String password = rs.getString("password");
+	            String name = rs.getString("name");
+	            String roadAddress = rs.getString("road_address");
+	            String post = rs.getString("post");
+	            String detailAddress = rs.getString("detail_address");
+	            String phone = rs.getString("phone");
+	            memberList.add(new MemberDTO(id,password,name,roadAddress,post,detailAddress,phone));
+	            
+	         }return memberList;
+	      }
+	   }
 	public int update(MemberDTO dto)throws Exception{
 
 		String sql = "update tbl_member set password=?, name=?, roadAddress=?, post=?, detailAddress=?, phone=?";

@@ -69,4 +69,20 @@ public class SubscribeDAO {
 			return dto;
 		}
 	}
+
+	// 아이디로 구독 여부 확인
+	   public boolean isSubscribedId(String id) throws Exception {
+	      String sql = "select * from tbl_subscribe where id = ?";
+
+	      try(Connection con = this.getConnection();
+	         PreparedStatement pstmt = con.prepareStatement(sql)) {
+	      
+	         pstmt.setString(1, id);
+	         
+	         ResultSet rs = pstmt.executeQuery();
+	         return rs.next();
+	      }
+	   }
+	
+	
 }
