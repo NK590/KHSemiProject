@@ -37,7 +37,7 @@
 				<ul class="nav flex-column">
 					<li class="nav-item"><a class="nav-link active"
 						aria-current="page" href="/mypage.my">구독 내역 조회</a></li>
-					<li class="nav-item"><a class="nav-link" href="/inquiry.my">회원 활동 내역</a>
+					<li class="nav-item"><a class="nav-link" href="/inquiryList.iq">회원 활동 내역</a>
 					</li>
 					<li class="nav-item"><a class="nav-link" href="/update.my">회원
 							정보 수정</a></li>
@@ -66,7 +66,7 @@
     	// 나의 활동내역에서 문의내역 버튼을 눌렀을 때
     	$(".btnInquiry").on("click", function(){
     		
-    		location.href="/inquiry.my";
+    		location.href="/inquiryList.iq";
     	})
     	
     	// 나의 활동내역에서 후기버튼을 눌렀을 때

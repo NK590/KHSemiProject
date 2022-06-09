@@ -26,14 +26,11 @@
             <div class="col" id="nav-item">
                 <nav class="nav">
                     <a class="nav-link" href="/product.pro">제품 보기</a>
-<<<<<<< HEAD
-                    <a class="nav-link" href="#">리뷰</a>
-=======
                     <a class="nav-link" href="/review.bo?currentPage=1">리뷰</a>
->>>>>>> 1ddeba4c379d3d0ae61170930344163fc52988b8
                     <a class="nav-link" href="/inquiry.iq?currentPage=1">고객센터</a>
-                    <a class="nav-link" href="#">로그인</a>
-                    <a class="nav-link" href="#">회원가입</a>
+                    <a class="nav-link" href="/loginProc.mem">로그인</a>
+                    <a class="nav-link" href="/member.mem">회원가입</a>
+                    <a class="nav-link" href="/mypage.my">마이페이지</a>
                     <a class="nav-link" style="color: rgb(255, 94, 0);" href="/petInput.pet">구독하기</a>
                 </nav>
             </div>

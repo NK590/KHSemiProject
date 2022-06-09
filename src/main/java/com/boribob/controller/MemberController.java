@@ -139,6 +139,8 @@ public class MemberController extends HttpServlet {
 			}catch(Exception e) {
 				e.printStackTrace();
 			}
+		}else if(uri.equals("/loginProc.mem")) { 	// 로그인 페이지 요청
+			response.sendRedirect("login/login.jsp");
 		}
 	}
 }

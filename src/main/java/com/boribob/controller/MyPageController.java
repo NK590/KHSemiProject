@@ -77,13 +77,21 @@ public class MyPageController extends HttpServlet {
 			// 비밀번호 입력받기
 			String withdrawPw = request.getParameter("withdrawPw");
 			System.out.println(withdrawPw);
-
+			
+			MemberDAO dao = new MemberDAO();
+			
 			try {
 				withdrawPw = EncryptionUtils.getSHA512(withdrawPw);
 
 				HttpSession session = request.getSession();
-				MemberDTO dto = (MemberDTO) session.getAttribute("loginSession");
-				if (withdrawPw.equals(dto.getPassword())) { // 비밀번호 비교
+				MemberDTO dto = (MemberDTO)session.getAttribute("loginSession");
+				String id = dto.getId();
+				
+				MemberDTO mDto = dao.selectById(id);
+				 
+				
+				
+				if (withdrawPw.equals(mDto.getPassword())) { // 비밀번호 비교
 
 					response.getWriter().append("ok");
 				} else {
@@ -152,23 +160,7 @@ public class MyPageController extends HttpServlet {
 			}catch(Exception e) {e.printStackTrace();
 			}
 
-		} else if(uri.equals("/inquiry.my")) {  // 마이페이지에서 나의 문의내역 확인
-			response.sendRedirect("/mypage/inquiry.jsp");
-			
-//			HttpSession session = request.getSession();
-//			MemberDTO dto = (MemberDTO) session.getAttribute("loginSession");
-//			String id = dto.getId();
-//			InquiryDAO dao = new InquiryDAO();
-//			
-//			try {
-//				
-//				ArrayList<InquiryDTO> list = dao.selectById(id);
-//				request.setAttribute("list", list);
-//
-//			}catch(Exception e) {e.printStackTrace();
-//			}
-//			request.getRequestDispatcher("/mypage/inquiry.jsp").forward(request, response);			
-		} else if(uri.equals("/review.my")) {  // 마이페이지에서 나의 리뷰내역 확인 
+		}	else if(uri.equals("/review.my")) {  // 마이페이지에서 나의 리뷰내역 확인 
 			response.sendRedirect("/mypage/review.jsp");
 			
 //			HttpSession session = request.getSession();
