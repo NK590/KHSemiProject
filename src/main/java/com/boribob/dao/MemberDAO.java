@@ -62,9 +62,11 @@ public class MemberDAO {
 	         }return memberList;
 	      }
 	   }
+	
+	
 	public int update(MemberDTO dto)throws Exception{
 
-		String sql = "update tbl_member set password=?, name=?, roadAddress=?, post=?, detailAddress=?, phone=?";
+		String sql = "update tbl_member set password=?, name=?, post=?, road_address=?,  detail_address=?, phone=? where id = ? ";
 
 		try(Connection con = bds.getConnection(); 
 			PreparedStatement pstmt = con.prepareStatement(sql);){
@@ -74,7 +76,7 @@ public class MemberDAO {
 			pstmt.setString(4, dto.getRoadAddress());
 			pstmt.setString(5, dto.getDetailAddress());
 			pstmt.setString(6, dto.getPhone());
-
+			pstmt.setString(7, dto.getId());
 
 			int rs = pstmt.executeUpdate();
 			return rs;
@@ -120,8 +122,8 @@ public class MemberDAO {
 			if(rs.next()) {
 				String password = rs.getString(2);
 				String name = rs.getString(3);
-				String roadAddress = rs.getString(4);
-				String post = rs.getString(5);
+				String post = rs.getString(4);
+				String roadAddress = rs.getString(5);
 				String detailAddress = rs.getString(6);
 				String phone = rs.getString(7);
 				
@@ -159,9 +161,64 @@ public class MemberDAO {
 	}
 	
 	
-						
-
+	// 회원의 핸드폰 4~7번째 값 얻어오기
+	public String phone1(String id)throws Exception{
+		
+		String sql = "select substr(phone,4,4) from tbl_member where id = ? ";
+		
+		try(Connection con = bds.getConnection(); 
+				PreparedStatement pstmt = con.prepareStatement(sql);){
+			pstmt.setString(1, id);
+			ResultSet rs = pstmt.executeQuery();
+			if(rs.next()) {
+				String phone1 = rs.getString(1);
+				return phone1;
+			}return null;
+		}
+	}
 	
+	// 회원의 핸드폰 8~11번째 값 얻어오기
+	public String phone2(String id)throws Exception{
+		
+		String sql = "select substr(phone,8,4) from tbl_member where id = ? ";
+		
+		try(Connection con = bds.getConnection(); 
+				PreparedStatement pstmt = con.prepareStatement(sql);){
+			pstmt.setString(1, id);
+			ResultSet rs = pstmt.executeQuery();
+			if(rs.next()) {
+				String phone2 = rs.getString(1);
+				return phone2;
+			}return null;
+		}
+	}
+	
+	// 회원의 핸드폰번호 조회
+	public MemberDTO selectByPhone(String phone1)throws Exception{
+		String sql = "select * from tbl_member where phone = ?";
+		try(Connection con = bds.getConnection();
+			PreparedStatement pstmt = con.prepareStatement(sql);){
+			pstmt.setString(1, phone1);
+			
+			ResultSet rs = pstmt.executeQuery();
+			if(rs.next()) {
+				String id = rs.getString(1);
+				String password = rs.getString(2);
+				String name = rs.getString(3);
+				String post = rs.getString(4);
+				String roadAddress = rs.getString(5);
+				String detailAddress = rs.getString(6);
+				String phone = rs.getString(7);
+				
+
+				MemberDTO dto = new MemberDTO(id, password, name, post, roadAddress, detailAddress, phone);
+
+
+				return dto;				
+				
+			}return null;
+		}
+	}
 	
 
 

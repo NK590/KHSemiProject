@@ -134,7 +134,21 @@ public class MyPageController extends HttpServlet {
 			
 			HttpSession session = request.getSession();
 			MemberDTO dto = (MemberDTO) session.getAttribute("loginSession");
-			request.setAttribute("dto", dto);
+			String id = dto.getId();
+			MemberDAO dao = new MemberDAO();
+			
+			
+			try {
+				String phone1 = dao.phone1(id);
+				String phone2 = dao.phone2(id);
+				
+				request.setAttribute("dto", dto);
+				request.setAttribute("phone1", phone1);
+				request.setAttribute("phone2", phone2);
+				
+			}catch(Exception e){e.printStackTrace();
+			}
+			
 			request.getRequestDispatcher("/mypage/memberUpdate.jsp").forward(request, response);
 	
 		}else if(uri.equals("/updateProc.my")) { // 회원정보 수정
@@ -150,11 +164,15 @@ public class MyPageController extends HttpServlet {
 			
 			MemberDAO dao= new MemberDAO();
 			
+			
+			
 			try {
+
 				password = EncryptionUtils.getSHA512(password);
-				
-				int rs = dao.update(new MemberDTO(id,password, name, post,roadAddr, detailAddr, phone));
+				MemberDTO mDto = new MemberDTO(id, password, name, post, roadAddr, detailAddr, phone);
+				int rs = dao.update(mDto);
 				if(rs>0) {
+						request.getSession().setAttribute("loginSession", mDto);			
 					System.out.println("회원 정보수정 성공");
 					response.sendRedirect("/mypage.my"); // 회원정보 수정완료 후 마이페이지 메인으로 이동
 				}
@@ -163,23 +181,7 @@ public class MyPageController extends HttpServlet {
 			}
 
 		}	
-//			else if(uri.equals("/review.my")) {  // 마이페이지에서 나의 리뷰내역 확인 
-//						
-//			HttpSession session = request.getSession();
-//			MemberDTO dto = (MemberDTO) session.getAttribute("loginSession");
-//			String id = dto.getId();
-//			ReviewDAO dao = new ReviewDAO();
-//			
-//			try {
-//				
-//				ArrayList<ReviewDTO> list = dao.selectById(id);
-//				request.setAttribute("list", list);
-//
-//			}catch(Exception e) {e.printStackTrace();
-//			}
-//			request.getRequestDispatcher("/mypage/review.jsp").forward(request, response);						
-//			
-//		}
+
 
 	}
 

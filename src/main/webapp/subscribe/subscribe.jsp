@@ -13,7 +13,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
         crossorigin="anonymous"></script>
-    <title>레이아웃</title>
+    <title>구독 정보 입력</title>
     <style>
         body {
             box-sizing: border-box;
@@ -109,7 +109,7 @@
             <form action="/subscribeInput.sub" method="post" id="subscribe-input-form">
                 <div class="row">
                     <div class="row">
-                        ${petDto.getPetName()} 에게 가장 어울리는 사료는 ${productNum} 입니다.
+                        ${petDto.getPetName()} 에게 가장 어울리는 사료는 ${productCode} 입니다.
                     </div>
                     <div class="col-12">
                         <div class="form-check">
@@ -123,6 +123,16 @@
                         </div>
                     </div>
                     <input type="text" name="subscribeType" id="subscribe-type" style="display: none;">
+                    
+                    <input type="text" name="productCode" value="${productCode}" style="display: none;">
+                    
+                    <input type="text" name="petName" value="${petDto.getPetName()}" style="display: none;">
+                    <input type="text" name="petAge" value="${petDto.getPetAge()}" style="display: none;">
+                    <input type="text" name="petAllergy" value="${petDto.getPetAllergy()}" style="display: none;">
+                    <input type="text" name="petWeight" value="${petDto.getPetWeight()}" style="display: none;">
+                    <input type="text" name="petKind" value="${petDto.getPetKind()}" style="display: none;">
+                    <input type="text" name="petType" value="${petDto.getPetType()}" style="display: none;">
+                    
                     <div class="col-12">
                         <button type="button" class="btn btn-primary" id="button-pay">결제하기</button>
                         <button type="button" class="btn btn-secondary" id="button-back">뒤로가기</button>
@@ -170,12 +180,6 @@
 
         // 현재 작업중
         function isValidInput() {
-            let petName = document.getElementById('pet-name').value;
-            let petBirthdayYear = document.getElementById('pet-birthday-year').value;
-            let petBirthdayMonth= document.getElementById('pet-birthday-month').value;
-            let petBirthdayDay = document.getElementById('pet-birthday-day').value;
-            let petAllergy = document.getElementById('pet-allergy').value;
-
             let now = new Date();
 
             /* if (petName.length == 0 || petName.length > 10) {
@@ -183,12 +187,12 @@
             } */
             return 'valid';
         }
+        
+        console.log(isValidInput())
 
         document.getElementById('button-pay').addEventListener('click', () => {
             getSubscribeType();
-            if (isValidInput() === 'valid') {
-                document.getElementById('pet-input-form').submit();
-            }
+            document.getElementById('subscribe-input-form').submit();
         })
     </script>
 </body>

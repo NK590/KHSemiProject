@@ -10,10 +10,11 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.websocket.Session;
 
-
 import com.boribob.dao.OrderDAO;
 import com.boribob.dto.OrderDTO;
 import com.boribob.dto.OrderInfoDTO;
+
+
 
 
 @WebServlet("*.order")
@@ -31,7 +32,7 @@ public class OrderController extends HttpServlet {
 		if (uri.equals("/form.order")) { // 1. 주문정보 입력페이지로 이동
 
 			HttpSession session = request.getSession();
-//			String id = ((MemberDTO)session.getAttribute("loginSession")).getId();
+//			String memberId = ((MemberDTO)session.getAttribute("loginSession")).getId();
 			// 세션값으로 회원id를 받고 회원 id로 회원정보랑 구독 정보를 OrderInfoDTO에 담아서 뷰에 뿌려주기
 
 			String memberId = "bori@gmail.com";// 세션으로 받아오는 아이디 -> 임시회원 아이디
@@ -116,7 +117,7 @@ public class OrderController extends HttpServlet {
 
 		} else if (uri.equals("/list.order")) {// 주문 리스트 
 			HttpSession session = request.getSession();
-			
+		
 			
 			try {
 				String memberId  = "bori@gmail.com";
@@ -125,6 +126,7 @@ public class OrderController extends HttpServlet {
 				
 				request.setAttribute("orderList", orderList);
 				request.getRequestDispatcher("/order/orderListV1.jsp").forward(request, response);
+				
 				} catch (Exception e) {
 				
 				e.printStackTrace();

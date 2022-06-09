@@ -8,6 +8,7 @@ public class Algorithms {
 		for (int i = 0; i < petDetails.size(); i++) {
 			targetNumber |= (petDetails.get(i) << i);
 		}
+		targetNumber += 1;
 		return targetNumber;
 	}
 	

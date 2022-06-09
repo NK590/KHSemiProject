@@ -119,9 +119,7 @@ pageEncoding="UTF-8"%>
             배송지주소 =
             ${detailDTO.orderPost}-${detailDTO.orderRoadAddress}-${detailDTO.orderDetailAddress}
           </li>
-          <li class="list-group-item">
-            결제금액 = ${detailDTO.payApproval} 원
-          </li>
+          <li class="list-group-item">결제금액 = ${detailDTO.payAmount} 원</li>
           <li class="list-group-item">
             구독기간 = ${detailDTO.subscribeTerm} 개월
           </li>

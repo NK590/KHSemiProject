@@ -9,8 +9,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.taglibs.standard.tag.common.fmt.RequestEncodingSupport;
-
 import com.boribob.dao.ProductDAO;
 import com.boribob.dto.ProductDTO;
 import com.google.gson.Gson;

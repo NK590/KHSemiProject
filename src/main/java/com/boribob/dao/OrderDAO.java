@@ -18,6 +18,8 @@ import org.apache.tomcat.dbcp.dbcp2.BasicDataSource;
 import com.boribob.dto.OrderDTO;
 import com.boribob.dto.OrderInfoDTO;
 
+
+
 public class OrderDAO {
 
 	private BasicDataSource bds;
@@ -234,7 +236,7 @@ public class OrderDAO {
 
 		}
 	}
-
+	
 	public int modifyOrder(Integer orderId,String deliveryStatus,String expectedArraival, String deliveryCount) throws Exception { // 배송정보 수정 
 		String sql = "update tbl_order set delivery_status =? ,expected_arrival =?,delivery_count=? where order_id =?";
 				
@@ -252,3 +254,4 @@ public class OrderDAO {
 	}
 
 }
+

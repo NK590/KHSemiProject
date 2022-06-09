@@ -139,7 +139,7 @@
 				<c:when test="${list.size()==0}">
 					<div class="row content text-center align-items-center">
 						<div class="col">
-							등록된 문의글이 없습니다.
+							등록된 후기가 없습니다.
 						</div>
 					</div>
 				</c:when>
@@ -159,7 +159,7 @@
        		$(".content").on("click",function(e){
        			let seqReview = $(e.target).parent(".row").children().eq(0).html();
        			console.log(seqInquiry);
-       			$.ajax({url:"detailView.bo?seqReview="+seqReview
+       			$.ajax({url:"/reviewListDetail.bo?seqReview="+seqReview
        				, type:"get"
        				, dataType:"json"
            			,success:function(rs){
@@ -171,37 +171,37 @@
            		})
        				
        		});
-       		$(".container").on("click",".modifyInquiry",function(e){//수정버튼
+       		$(".container").on("click",".modifyReview",function(e){//수정버튼
        			$(e.target).parent().children().css("display","none");
        			$(e.target).parent().next(".buttonBox2").children().css("display","block");
-	       		$(".inquiryTitle").attr("readonly",false);
-	       		$(".inquiryContent").attr("readonly",false);
-	       		$(".inquiryTitle").focus();
+	       		$(".reviewTitle").attr("readonly",false);
+	       		$(".reviewContent").attr("readonly",false);
+	       		$(".reviewTitle").focus();
        		})
        		$(".container").on("click",".backBtn",function(){//뒤로가기버튼
-    			location.href="/inquiryList.iq"
+    			location.href="/reviewList.bo"
     		})
     		$(".container").on("click",".deleteInquiry",function(e){//삭제버튼
-    			let seqInquiry = $(e.target).val();
-    			console.log(seqInquiry);
-    			location.href="/inquiryDelete.iq?seqInquiry="+seqInquiry;
+    			let seqReview = $(e.target).val();
+    			console.log(seqReview);
+    			location.href="/reviewDelete.bo?seqReview="+seqReview;
     		})
-    		$(".container").on("click",".cancelInquiry",function(e){//취소버튼
-    			location.href="/inquiryList.iq"
+    		$(".container").on("click",".cancelReview",function(e){//취소버튼
+    			location.href="/ReviewList.iq"
     		})
-       		$(".container").on("click",".submitInquiry",function(e){//수정완료버튼
-       			let seqInquiry = $(e.target).val();
-       			console.log(seqInquiry);
-       			let inquiryTitle = $(e.target).parent(".buttonBox2").parent(".container").find(".inquiryTitle").val();
-       			console.log(inquiryTitle);
-       			let inquiryContent = $(e.target).parent(".buttonBox2").parent(".container").find("textarea").val();
-       			console.log(inquiryContent);
+       		$(".container").on("click",".submitReview",function(e){//수정완료버튼
+       			let seqReview = $(e.target).val();
+       			console.log(seqReview);
+       			let reviewTitle = $(e.target).parent(".buttonBox2").parent(".container").find(".reviewTitle").val();
+       			console.log(reviewTitle);
+       			let reviewContent = $(e.target).parent(".buttonBox2").parent(".container").find("textarea").val();
+       			console.log(reviewContent);
        			
        			$.ajax({
-    				url : "/inquiryUpdate.iq"
+    				url : "/reviewUpdate.bo"
     				,type: "post"
     				, dataType:"json"
-    				,data:{seqInquiry:seqInquiry,inquiryTitle:inquiryTitle,inquiryContent:inquiryContent}
+    				,data:{seqReview:seqReview,reviewTitle:reviewTitle,reviewContent:reviewContent}
     				,success:function(rs){
     					console.log(rs)
     					if(rs ==="fail"){
@@ -221,7 +221,7 @@
    				let row1 = $("<div class='row py-2'>")
    				let col1 = $("<div class='col-2 col-form-label'>").html("제목");
    				let col2 = $("<div class='col-10'>")
-   				let text = $("<input type='text' readonly='readonly'>").addClass("form-control inquiryTitle").val(rs.inquiryTitle);
+   				let text = $("<input type='text' readonly='readonly'>").addClass("form-control reviewTitle").val(rs.reviewTitle);
    				col2.append(text);
    				row1.append(col1,col2);
    					
@@ -229,23 +229,23 @@
    				let col3 = $("<div class='col-lg-2 d-none d-lg-block col-form-label'>").html("작성자");
    				let col4 = $("<div class='col-lg-5 col-7'>").html(rs.id);
    				let col5 = $("<div class='col-lg-2 d-none d-lg-block col-form-label'>").html("작성일");
-   				let col6 = $("<div class='col-lg-3 col-5'>").html(rs.inquiryDate);
+   				let col6 = $("<div class='col-lg-3 col-5'>").html(rs.reviewDate);
    				row2.append(col3,col4,col5,col6);
    					
    				let row3 = $("<div class='row py-2'>");
    				let col7 = $("<div class='col-2 form-label'>").html("내용");
    				let col8 = $("<div class='col-10'>");
-   				let textarea = $("<textarea readonly class='inquiryContent form-control' rows='20'>").val(rs.inquiryContent);
+   				let textarea = $("<textarea readonly class='reviewContent form-control' rows='20'>").val(rs.reviewContent);
    				col8.append(textarea);
    				row3.append(col7,col8);
    					
    				let buttonBox1 = $("<div class='buttonBox1 d-grid gap-3 d-flex justify-content-center'>")
-   				let button1 = $("<button>").addClass("btn btn-outline-secondary modifyInquiry").html("수정").val(rs.seqInquiry);
-   				let button2 = $("<button>").addClass("btn btn-outline-secondary deleteInquiry").html("삭제").val(rs.seqInquiry);
+   				let button1 = $("<button>").addClass("btn btn-outline-secondary modifyReview").html("수정").val(rs.seqReview);
+   				let button2 = $("<button>").addClass("btn btn-outline-secondary deleteReview").html("삭제").val(rs.seqReview);
    				let button3 = $("<button>").addClass("btn btn-outline-secondary backBtn").html("뒤로가기")
    				let buttonBox2 = $("<div class='buttonBox2 d-grid gap-2 d-flex justify-content-center'>")
-   				let button4 = $("<button>").addClass("btn btn-outline-secondary submitInquiry").html("완료").val(rs.seqInquiry);
-   				let button5 = $("<button>").addClass("btn btn-outline-secondary cancelInquiry").html("취소").val(rs.seqInquiry);
+   				let button4 = $("<button>").addClass("btn btn-outline-secondary submitReview").html("완료").val(rs.seqReview);
+   				let button5 = $("<button>").addClass("btn btn-outline-secondary cancelReview").html("취소").val(rs.seqReview);
    				buttonBox1.append(button1,button2,button3);
    				buttonBox2.append(button4,button5);
    				container.append(row1,row2,row3,buttonBox1,buttonBox2);

@@ -37,6 +37,8 @@ public class AdminController extends HttpServlet {
 			
 		}else if(uri.equals("memberList.admin")) {
 			
+			
+			
 		}else if(uri.equals("memberForm.admin")) {
 			
 		

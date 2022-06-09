@@ -68,12 +68,12 @@
 				<ul class="nav flex-column">
 					<li class="nav-item"><a class="nav-link active"
 						aria-current="page" href="/mypage.my">구독 내역 조회</a></li>
-					<li class="nav-item"><a class="nav-link" href="/inquiryList.iq">회원 활동 내역</a>
+					<li class="nav-item"><a class="nav-link" aria-current="page" href="#">주문 내역 조회</a></li>
+					<li class="nav-item"><a class="nav-link" href="/inquiryList.iq">내가 쓴 문의</a></li>
+					<li class="nav-item"><a class="nav-link" href="/reviewList.bo">내가 쓴 후기</a>
 					</li>
-					<li class="nav-item"><a class="nav-link" href="/update.my">회원
-							정보 수정</a></li>
-					<li class="nav-item"><a class="nav-link" href="/withdrawal.my">회원
-							탈퇴</a></li>
+					<li class="nav-item"><a class="nav-link" href="/update.my">회원정보 수정</a></li>
+					<li class="nav-item"><a class="nav-link" href="/withdrawal.my">회원탈퇴</a></li>
 				</ul>
 			</div>
 			<!-- content body -->

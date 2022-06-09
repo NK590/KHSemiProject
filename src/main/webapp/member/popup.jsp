@@ -58,7 +58,7 @@
 					<span>이메일 인증 : </span>
 				</div>
 				<div class="col-5">
-					<input type="text" id="randomCode" placeholder="인증번호를 입력하세요.">
+					<input type="text" id="randomCode" maxlength="6" placeholder="인증번호를 입력하세요.">
 				</div>
 				<div class="col-4">
 					<button type="button" id="ranNumCheck">확인</button>
@@ -105,12 +105,11 @@
 
 					console.log($("#randomCode").val());
 					console.log(data);
-					
+					let randomCode = /[0~9]{6}/;
 					let useBtn = document.getElementById("useBtn");
 
 					console.log("${rs}");	
-					
-					if ($("#randomCode").val()==data) {
+					if ($.trim("#randomCode").val()==data) {
 						alert("인증성공");
 						useBtn.disabled = false;
 					} else {

@@ -44,7 +44,6 @@ public class MemberController extends HttpServlet {
 		}else if(uri.equals("/idCheckPopup.mem")) { //이메일 중복확인 뜨는 팝업 페이지 요청
 			request.setAttribute("idx", "idcheck");
 			System.out.print("idcheck");
-//			response.sendRedirect("/member/popup.jsp");
 			request.getRequestDispatcher("/member/popup.jsp").forward(request, response);
 		}else if(uri.equals("/checkId.mem")) { // 이메일 중복확인 요청
 			String id = request.getParameter("id");
@@ -131,17 +130,36 @@ public class MemberController extends HttpServlet {
 		            request.setAttribute("rs", true);
 		            HttpSession session = request.getSession();
 		            session.setAttribute("loginSession", dto);
+		            request.getRequestDispatcher("/index.jsp").forward(request, response);
 		         }else {
 		            System.out.println("로그인실패");
 		            request.setAttribute("rs", false);
+		            response.sendRedirect("/login/login.jsp");
+
 		         }
-		         request.getRequestDispatcher("/index.jsp").forward(request, response);
+		         
 			}catch(Exception e) {
 				e.printStackTrace();
 			}
+
 		}else if(uri.equals("/loginProc.mem")) { 	// 로그인 페이지 요청
 			response.sendRedirect("login/login.jsp");
+
+		}else if(uri.equals("/logout.mem")) { // 로그아웃
+			HttpSession session = request.getSession();
+			session.invalidate();
+			response.sendRedirect("/login/login.jsp");
+			
+		}else if(uri.equals("/searchPopup.mem")) { // 아이디/비밀번호 찾기
+			
+
 		}
+		
+		
+		
+		
+		
+		
 	}
 }
    

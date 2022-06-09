@@ -13,7 +13,7 @@ import javax.naming.InitialContext;
 
 import org.apache.tomcat.dbcp.dbcp2.BasicDataSource;
 
-
+import com.boribob.dto.InquiryDTO;
 import com.boribob.dto.ReviewDTO;
 
 public class ReviewDAO {
@@ -31,28 +31,28 @@ public class ReviewDAO {
 	}
 	
 	// 마이페이지에서 내가 쓴 후기 띄워주기
-		public ReviewDTO selectById(String id) throws Exception{
-			String sql = "SELECT * FROM TBL_review WHERE id = ?";
-
-			try(Connection con = bds.getConnection();
-					PreparedStatement pstmt = con.prepareStatement(sql);){
-
-				pstmt.setString(1, id);
-				ResultSet rs = pstmt.executeQuery();
-
-				if(rs.next()) {
-					int seqReview = rs.getInt("seq_review");
-					int productCode = rs.getInt("product_code");
-					String reviewTitle = rs.getString("review_title");
-					String reviewContent = rs.getString("review_conntent");
-					String productImg = rs.getString("product_img");
-					String reviewDate = dateToString(rs.getDate("review_date"));
-					ReviewDTO dto = new ReviewDTO(seqReview, productCode, id, reviewTitle, reviewContent, productImg, reviewDate);
-					return dto;
-				}
-				return null;
-			}
-		} 
+	public ArrayList<ReviewDTO> selectById(String id)throws Exception{
+		String sql = "select * from tbl_review where id=? ";
+		try (Connection con = bds.getConnection();
+			PreparedStatement pstmt = con.prepareStatement(sql);){
+			pstmt.setString(1, id);
+			ResultSet rs = pstmt.executeQuery();
+			ArrayList<ReviewDTO> list = new ArrayList<>();
+			
+			while(rs.next()) {
+				int seqReview = rs.getInt("seq_review");
+				int productCode = rs.getInt("product_code");
+				String reviewTitle = rs.getString("review_Title");
+				String reviewContent = rs.getString("review_content");
+				String reviewDate = dateToString(rs.getDate("review_date"));
+				String reviewImg = rs.getString("review_img");
+				list.add(new ReviewDTO(seqReview, productCode,id,reviewTitle, reviewContent,reviewImg,reviewDate));
+			}return list;
+		}
+	}
+	
+	
+	
 	
 	
 	
@@ -93,6 +93,8 @@ public class ReviewDAO {
 		}
 	}
 
+	
+	
 
 	//작성된 글을 테이블에 넣기 ok
 	public int insert(ReviewDTO dto) throws Exception{

@@ -1,5 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -13,7 +14,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
         crossorigin="anonymous"></script>
-    <title>¸ÞÀÎ-ÃÊ¾È</title>
+    <title>ë©”ì¸-ì´ˆì•ˆ</title>
     <link rel="stylesheet" href="css/index.css">
 </head>
 
@@ -23,21 +24,39 @@
             <div class="col-4">
                 <img src="images/project_logo.PNG" class="d-block w-100" id="main-logo">
             </div>
+            <c:choose>
+			<c:when test="${not empty loginSession}">
             <div class="col" id="nav-item">
                 <nav class="nav">
-                    <a class="nav-link" href="/product.pro">Á¦Ç° º¸±â</a>
-                    <a class="nav-link" href="/review.bo?currentPage=1">¸®ºä</a>
-                    <a class="nav-link" href="/inquiry.iq?currentPage=1">°í°´¼¾ÅÍ</a>
-                    <a class="nav-link" href="/loginProc.mem">·Î±×ÀÎ</a>
-                    <a class="nav-link" href="/member.mem">È¸¿ø°¡ÀÔ</a>
-                    <a class="nav-link" href="/mypage.my">¸¶ÀÌÆäÀÌÁö</a>
-                    <a class="nav-link" style="color: rgb(255, 94, 0);" href="/petInput.pet">±¸µ¶ÇÏ±â</a>
+                    <a class="nav-link" href="/product.pro">ì œí’ˆ ë³´ê¸°</a>
+                    <a class="nav-link" href="/review.bo?currentPage=1">ë¦¬ë·°</a>
+                    <a class="nav-link" href="/inquiry.iq?currentPage=1">ê³ ê°ì„¼í„°</a>
+                    <a class="nav-link" href="/logout.mem">ë¡œê·¸ì•„ì›ƒ</a>
+                    <a class="nav-link" href="/mypage.my">ë§ˆì´íŽ˜ì´ì§€</a>
+                    <a class="nav-link" style="color: rgb(255, 94, 0);" href="/petInput.pet">êµ¬ë…í•˜ê¸°</a>
                 </nav>
             </div>
+            </c:when>
+            <c:otherwise>
+            <div class="col" id="nav-item">
+                <nav class="nav">
+                    <a class="nav-link" href="/product.pro">ì œí’ˆ ë³´ê¸°</a>
+                    <a class="nav-link" href="/review.bo?currentPage=1">ë¦¬ë·°</a>
+                    <a class="nav-link" href="/inquiry.iq?currentPage=1">ê³ ê°ì„¼í„°</a>
+                    <a class="nav-link" href="/login/login.jsp">ë¡œê·¸ì¸</a>
+                    <a class="nav-link" href="/member/member.jsp">íšŒì›ê°€ìž…</a>
+                    <a class="nav-link" style="color: rgb(255, 94, 0);" href="/petInput.pet">êµ¬ë…í•˜ê¸°</a>
+                </nav>
+            </div>
+            </c:otherwise>
+           </c:choose> 
+            
+            
+            
         </div>
     </header>
 	
-    <!--Ä³·¯¼¿·Î °øÁö»çÇ× ¹× ÀÌº¥Æ® ¾È³»-->
+    <!--ìºëŸ¬ì…€ë¡œ ê³µì§€ì‚¬í•­ ë° ì´ë²¤íŠ¸ ì•ˆë‚´-->
     <div class="row justify-content-center">
         <div class="col-4">
             <div id="banner-caption" class="carousel slide" data-bs-ride="carousel">
@@ -54,8 +73,8 @@
                         <img src="images/banner-1.JPG">
                         <div class="carousel-caption d-none d-md-block">
                             <div class="notice-txt">
-                                <h1><strong style="background-color: #ffdcbcd7;">»ç¶ûÇÏ´Â ³ªÀÇ °¡Á· Ä£±¸¸¦ À§ÇÑ ¼±ÅÃ</strong></h1>
-                                <h4>6¿ù, ¹Ù¿ì¿Í¿ì ¹Â¹Â¿Í ÇÔ²²ÇÑ ÈÄ±â¸¦ µé·ÁÁÖ¼¼¿ä »óÇ°ÀÌ ±â´Ù¸®°í ÀÖ½À´Ï´Ù</h4>
+                                <h1><strong style="background-color: #ffdcbcd7;">ì‚¬ëž‘í•˜ëŠ” ë‚˜ì˜ ê°€ì¡± ì¹œêµ¬ë¥¼ ìœ„í•œ ì„ íƒ</strong></h1>
+                                <h4>6ì›”, ë°”ìš°ì™€ìš° ë®¤ë®¤ì™€ í•¨ê»˜í•œ í›„ê¸°ë¥¼ ë“¤ë ¤ì£¼ì„¸ìš” ìƒí’ˆì´ ê¸°ë‹¤ë¦¬ê³  ìžˆìŠµë‹ˆë‹¤</h4>
                             </div>
                         </div>
                     </div>
@@ -63,8 +82,8 @@
                         <img src="images/banner-1.JPG">
                         <div class="carousel-caption d-none d-md-block">
                             <div class="notice-txt">
-                                <h1><strong style="background-color: #ffdcbcd7;">»ç¶ûÇÏ´Â ³ªÀÇ °¡Á· Ä£±¸¸¦ À§ÇÑ ¼±ÅÃ</strong></h1>
-                                <h4>6¿ù, ¹Ù¿ì¿Í¿ì ¹Â¹Â¿Í ÇÔ²²ÇÑ ÈÄ±â¸¦ µé·ÁÁÖ¼¼¿ä »óÇ°ÀÌ ±â´Ù¸®°í ÀÖ½À´Ï´Ù</h4>
+                                <h1><strong style="background-color: #ffdcbcd7;">ì‚¬ëž‘í•˜ëŠ” ë‚˜ì˜ ê°€ì¡± ì¹œêµ¬ë¥¼ ìœ„í•œ ì„ íƒ</strong></h1>
+                                <h4>6ì›”, ë°”ìš°ì™€ìš° ë®¤ë®¤ì™€ í•¨ê»˜í•œ í›„ê¸°ë¥¼ ë“¤ë ¤ì£¼ì„¸ìš” ìƒí’ˆì´ ê¸°ë‹¤ë¦¬ê³  ìžˆìŠµë‹ˆë‹¤</h4>
                             </div>
                         </div>
                     </div>
@@ -72,8 +91,8 @@
                         <img src="images/banner-1.JPG">
                         <div class="carousel-caption d-none d-md-block">
                             <div class="notice-txt">
-                                <h1><strong style="background-color: #ffdcbcd7;">»ç¶ûÇÏ´Â ³ªÀÇ °¡Á· Ä£±¸¸¦ À§ÇÑ ¼±ÅÃ</strong></h1>
-                                <h4>6¿ù, ¹Ù¿ì¿Í¿ì ¹Â¹Â¿Í ÇÔ²²ÇÑ ÈÄ±â¸¦ µé·ÁÁÖ¼¼¿ä »óÇ°ÀÌ ±â´Ù¸®°í ÀÖ½À´Ï´Ù</h4>
+                                <h1><strong style="background-color: #ffdcbcd7;">ì‚¬ëž‘í•˜ëŠ” ë‚˜ì˜ ê°€ì¡± ì¹œêµ¬ë¥¼ ìœ„í•œ ì„ íƒ</strong></h1>
+                                <h4>6ì›”, ë°”ìš°ì™€ìš° ë®¤ë®¤ì™€ í•¨ê»˜í•œ í›„ê¸°ë¥¼ ë“¤ë ¤ì£¼ì„¸ìš” ìƒí’ˆì´ ê¸°ë‹¤ë¦¬ê³  ìžˆìŠµë‹ˆë‹¤</h4>
                             </div>
                         </div>
                     </div>
@@ -91,11 +110,11 @@
             </div>
         </div>
     </div>
-    <!--¸ÞÀÎ¿µ¿ª-->
-    <!--±¸ºÐ¼±-->
+    <!--ë©”ì¸ì˜ì—­-->
+    <!--êµ¬ë¶„ì„ -->
     <hr class="divider" style="width: 1200px; margin-left: 123px;">
     <div class="container">
-        <!--»óÇ° ÀÌ¹ÌÁö ¿µ¿ªÀÔ´Ï´Ù ÇØ´ç ÀÌ¹ÌÁö¸¦ Å¬¸¯ ½Ã »óÇ° »ó¼¼Á¤º¸·Î ÀÌµ¿-->
+        <!--ìƒí’ˆ ì´ë¯¸ì§€ ì˜ì—­ìž…ë‹ˆë‹¤ í•´ë‹¹ ì´ë¯¸ì§€ë¥¼ í´ë¦­ ì‹œ ìƒí’ˆ ìƒì„¸ì •ë³´ë¡œ ì´ë™-->
         <div class="row justify-content-around">
             <div class="col" id="product-imgs" style="margin-left: 100px;">
                 <br>
@@ -130,9 +149,9 @@
     <br>
     <br>
     <hr class="divider" style="width: 1200px; margin-left: 123px;">
-    <!--¸ÞÀÎ ¼Ó »óÇ° ÀÌ¹ÌÁö ¸®ºä ÀÌ¹ÌÁö ±¸ºÐ¼±-->
+    <!--ë©”ì¸ ì† ìƒí’ˆ ì´ë¯¸ì§€ ë¦¬ë·° ì´ë¯¸ì§€ êµ¬ë¶„ì„ -->
     <div class="row justify-content-around">
-        <!--¸®ºä ¿µ¿ª ¸®ºä Å¬¸¯ ½Ã ÇØ´ç ¸®ºä °Ô½Ã¹°·Î ÀÌµ¿-->
+        <!--ë¦¬ë·° ì˜ì—­ ë¦¬ë·° í´ë¦­ ì‹œ í•´ë‹¹ ë¦¬ë·° ê²Œì‹œë¬¼ë¡œ ì´ë™-->
         <div class="col-4">
             <br>
             <br>
@@ -156,10 +175,10 @@
             </div>
             <div class="footer">
                 <ul class="ft-ul">
-                    <li>BoriBob Inc. »ç¶û½Ã °í¹é±¸ Çàº¹µ¿</li>
-                    <li>´ëÇ¥ : º¸¸®¹äÇüÁ¦µé »ç¾÷ÀÚµî·Ï¹øÈ£ : 780-86-01094</li>
-                    <li>´ëÇ¥¹øÈ£ : +82)-665-3430 ÆÑ½º¹øÈ£ : +82)-888-3430 È¨ÆäÀÌÁö : petvenience.store.com</li>
-                    <li>Copyright¨ÏBoriBob Inc. All Rights Reserved.</li>
+                    <li>BoriBob Inc. ì‚¬ëž‘ì‹œ ê³ ë°±êµ¬ í–‰ë³µë™</li>
+                    <li>ëŒ€í‘œ : ë³´ë¦¬ë°¥í˜•ì œë“¤ ì‚¬ì—…ìžë“±ë¡ë²ˆí˜¸ : 780-86-01094</li>
+                    <li>ëŒ€í‘œë²ˆí˜¸ : +82)-665-3430 íŒ©ìŠ¤ë²ˆí˜¸ : +82)-888-3430 í™ˆíŽ˜ì´ì§€ : petvenience.store.com</li>
+                    <li>Copyrightâ“’BoriBob Inc. All Rights Reserved.</li>
                     <div class="facebookicon">
                         <img src="images/facebook_icon.png" style="border-color: lightblue;">
                     </div>
@@ -170,10 +189,10 @@
                         <img src="images/youtube_icon.png" style="border-color: lightblue;">
                     </div>
                     <div class="ft-ul2">
-                        <li><strong>°í°´¼¾ÅÍ</strong></li>
+                        <li><strong>ê³ ê°ì„¼í„°</strong></li>
                         <li style="height: 8px;"></li>
-                        <li>¿ÀÀü 10½ÃºÎÅÍ ¿ÀÈÄ 6½Ã±îÁö</li>
-                        <li>Åä¿äÀÏ, ÀÏ¿äÀÏ, °øÈÞÀÏ ÈÞ¹«</li>
+                        <li>ì˜¤ì „ 10ì‹œë¶€í„° ì˜¤í›„ 6ì‹œê¹Œì§€</li>
+                        <li>í† ìš”ì¼, ì¼ìš”ì¼, ê³µíœ´ì¼ íœ´ë¬´</li>
                     </div>
                 </ul>
             </div>

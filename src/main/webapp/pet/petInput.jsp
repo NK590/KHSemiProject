@@ -13,7 +13,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
         crossorigin="anonymous"></script>
-    <title>레이아웃</title>
+    <title>펫 정보 입력</title>
     <style>
         body {
             box-sizing: border-box;
@@ -220,6 +220,10 @@
             if (isValidInput() === 'valid') {
                 document.getElementById('pet-input-form').submit();
             }
+        })
+        
+        document.getElementById('button-back').addEventListener('click', () => {
+        	location.href = "/home";
         })
     </script>
 </body>

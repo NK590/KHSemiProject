@@ -1,8 +1,10 @@
 package com.boribob.dao;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.text.SimpleDateFormat;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -31,12 +33,13 @@ public class SubscribeDAO {
 	
 	// 구독 정보 입력
 	public int insert(SubscribeDTO dto) throws Exception {
-		String sql = "insert into tbl_subscribe values (seq_subscribe, ?, sysdate, ?)";
+		String sql = "insert into tbl_subscribe values (?, ?, sysdate, ?)";
 		try(Connection con = this.getConnection();
 			PreparedStatement pstmt = con.prepareStatement(sql)) {
-		
-			pstmt.setInt(1, dto.getProductCode());
-			pstmt.setInt(2, dto.getSubscribeTerm());
+			
+			pstmt.setString(1, dto.getId());
+			pstmt.setInt(2, dto.getProductCode());
+			pstmt.setInt(3, dto.getSubscribeTerm());
 			
 			int rs = pstmt.executeUpdate();
 			return rs;
@@ -46,7 +49,7 @@ public class SubscribeDAO {
 	// 아이디로 구독 정보 찾기
 	public SubscribeDTO selectSubscribesById(String id) throws Exception {
 		// tbl_subscribe 테이블과 tbl_member 테이블 join
-		String sql = "select s.* form tbl_subscribe s join tbl_member m on s.id = m.id where m.id = ?";
+		String sql = "select * from tbl_subscribe where id = ?";
 
 		try(Connection con = this.getConnection();
 			PreparedStatement pstmt = con.prepareStatement(sql)) {
@@ -56,19 +59,20 @@ public class SubscribeDAO {
 			ResultSet rs = pstmt.executeQuery();
 			SubscribeDTO dto = new SubscribeDTO();
 			if (rs.next()) {
+				
 				int productCode = rs.getInt("product_code");
-				int seqSubscribe = rs.getInt("seq_subscribe");
-				int subscribeStart = rs.getInt("subscribe_start");
+				String subscribeStart = getStringDate(rs.getDate("subscribe_start"));
 				int subscribeTerm = rs.getInt("subscribe_term");
 				
+				dto.setId(id);
 				dto.setProductCode(productCode);
-				dto.setSeqSubscribe(seqSubscribe);
 				dto.setSubscribeStart(subscribeStart);
 				dto.setSubscribeTerm(subscribeTerm);
 			}
 			return dto;
 		}
 	}
+
 
 	// 아이디로 구독 여부 확인
 	   public boolean isSubscribedId(String id) throws Exception {
@@ -85,4 +89,10 @@ public class SubscribeDAO {
 	   }
 	
 	
+	// String 형을 Date 형으로
+	public String getStringDate(Date date) {
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy년 MM월 dd일 HH시 mm분 ss초");
+		return sdf.format(date);
+	}
+
 }
