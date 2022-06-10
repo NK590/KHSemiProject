@@ -121,6 +121,9 @@ public class MyPageController extends HttpServlet {
 					int rs = dao.delete(dto.getId());
 					if (rs > 0) {
 						System.out.println("데이터삭제 성공");
+						
+						session.invalidate();
+						
 					} else {
 						System.out.println("데이터삭제 실패");
 					}
@@ -181,6 +184,10 @@ public class MyPageController extends HttpServlet {
 			}
 
 		}	
+		else if(uri.equals("/orderList.my")) {  // 주문 내역 확인하기
+			
+			response.sendRedirect("/list.order");
+		}
 
 
 	}

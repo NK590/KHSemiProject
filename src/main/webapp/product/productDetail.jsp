@@ -251,7 +251,7 @@
                     <span>${product.productContent}</span>
                 </div> <br>
                 <div class="btn-subscribe">
-                    <button type="button" class="btn btnCat btn-dark">구독하기</button>
+                    <button type="button" class="btn btn-dark" id="btnSubscibe">구독하기</button>
                 </div>
             </div>
         </div>
@@ -319,5 +319,18 @@
             </ul>
         </div>
     </div>
+    <script>
+    	$("#btnSubscribe").on("click",function(){
+    		location.href = "/pet.pet";	
+    	})
+    </script>
 </body>
 </html>
+
+
+
+
+
+
+
+

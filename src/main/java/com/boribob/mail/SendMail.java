@@ -36,7 +36,7 @@ public class SendMail {
 		// 메일에 출력할 텍스트
 		StringBuffer sb = new StringBuffer();
 		sb.append("<h4>해당 인증번호를 입력해 주세요.</h4>");
-		sb.append("<span> [ " + randomNumber + " ] </span>");
+		sb.append(randomNumber);
 		String html = sb.toString();
 		// 메일 옵션 설정
 		Properties props = new Properties();

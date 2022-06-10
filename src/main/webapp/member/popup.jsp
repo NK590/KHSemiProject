@@ -109,7 +109,7 @@
 					let useBtn = document.getElementById("useBtn");
 
 					console.log("${rs}");	
-					if ($.trim("#randomCode").val()==data) {
+					if ($("#randomCode").val()==data) {
 						alert("인증성공");
 						useBtn.disabled = false;
 					} else {

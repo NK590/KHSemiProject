@@ -174,38 +174,39 @@ img {
 					</c:forEach>
 				</div>
 			</div>
-			<!--풋터영역-->
-			<div class="row justify-content-around">
-				<div class="footer">
-					<ul class="ft-ul">
-						<li>BoriBob Inc. 사랑시 고백구 행복동</li>
-						<li>대표 : 보리밥형제들 사업자등록번호 : 780-86-01094</li>
-						<li>대표번호 : +82)-665-3430 팩스번호 : +82)-888-3430 홈페이지 :
-							petvenience.store.com</li>
-						<li>CopyrightⓒBoriBob Inc. All Rights Reserved.</li>
-						<div class="facebookicon">
-							<img src="images/facebook_icon.png"
-								style="border-color: lightblue;">
-						</div>
-						<div class="instagramicon">
-							<img src="images/instagram_icon.png"
-								style="border-color: lightblue;">
-						</div>
-						<div class="youtubeicon">
-							<img src="images/youtube_icon.png"
-								style="border-color: lightblue;">
-						</div>
-						<div class="ft-ul2">
-							<li><strong>고객센터</strong></li>
-							<li style="height: 8px;"></li>
-							<li>오전 10시부터 오후 6시까지</li>
-							<li>토요일, 일요일, 공휴일 휴무</li>
-						</div>
-					</ul>
+		</div>
+	</div>
+	<!--풋터영역-->
+	<div class="row justify-content-around">
+		<div class="footer">
+			<ul class="ft-ul">
+				<li>BoriBob Inc. 사랑시 고백구 행복동</li>
+				<li>대표 : 보리밥형제들 사업자등록번호 : 780-86-01094</li>
+				<li>대표번호 : +82)-665-3430 팩스번호 : +82)-888-3430 홈페이지 :
+					petvenience.store.com</li>
+				<li>CopyrightⓒBoriBob Inc. All Rights Reserved.</li>
+				<div class="facebookicon">
+					<img src="images/facebook_icon.png"
+						style="border-color: lightblue;">
 				</div>
-			</div>
+				<div class="instagramicon">
+					<img src="images/instagram_icon.png"
+						style="border-color: lightblue;">
+				</div>
+				<div class="youtubeicon">
+					<img src="images/youtube_icon.png" style="border-color: lightblue;">
+				</div>
+				<div class="ft-ul2">
+					<li><strong>고객센터</strong></li>
+					<li style="height: 8px;"></li>
+					<li>오전 10시부터 오후 6시까지</li>
+					<li>토요일, 일요일, 공휴일 휴무</li>
+				</div>
+			</ul>
+		</div>
+	</div>
 
-			<script>
+	<script>
 		// 강아지버튼을 눌렀을 때 강아지상품만 비동기로 띄워주기 
 			$(".btnDog").on("click",function(){	
 				
@@ -278,37 +279,6 @@ img {
 				
 			})
 			
-			
-			
-		
-		
 		</script>
 </body>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 </html>

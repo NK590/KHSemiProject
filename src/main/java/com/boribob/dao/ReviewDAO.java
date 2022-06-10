@@ -83,7 +83,7 @@ public class ReviewDAO {
 
 	//리뷰 수정 ok
 	public int update(ReviewDTO dto) throws Exception {
-		String sql = "update tbl_review set riview_title=?, review_content=? where seq_review=?";
+		String sql = "update tbl_review set review_title=?, review_content=? where seq_review=?";
 		try (Connection con = bds.getConnection(); PreparedStatement pstmt = con.prepareStatement(sql)) {
 			pstmt.setString(1, dto.getReviewTitle());
 			pstmt.setString(2, dto.getReviewContent());
@@ -125,10 +125,10 @@ public class ReviewDAO {
 				String id = rs.getString("id");
 				int productCode = rs.getInt("product_code");
 				String reviewTitle = rs.getString("review_title");
-				String reviewContent = rs.getString("review_conntent");
-				String productImg = rs.getString("product_img");
+				String reviewContent = rs.getString("review_content");
+				String reviewImg = rs.getString("review_img");
 				String reviewDate = dateToString(rs.getDate("review_date"));
-				ReviewDTO dto = new ReviewDTO(seqReview, productCode, id, reviewTitle, reviewContent, productImg, reviewDate);
+				ReviewDTO dto = new ReviewDTO(seqReview, productCode, id, reviewTitle, reviewContent, reviewDate, reviewImg);
 				return dto;
 			}
 			return null;
@@ -150,7 +150,7 @@ public class ReviewDAO {
 				String id = rs.getString("id");
 				int productCode = rs.getInt("product_code");
 				String reviewTitle = rs.getString("review_title");
-				String reviewContent = rs.getString("review_conntent");
+				String reviewContent = rs.getString("review_content");
 				String productImg = rs.getString("product_img");
 				String reviewDate = dateToString(rs.getDate("review_date"));
 				ReviewList.add(new ReviewDTO(seqReview,productCode,id,reviewTitle,reviewContent,productImg,reviewDate));

@@ -41,7 +41,7 @@
 				<ul class="nav flex-column">
 					<li class="nav-item"><a class="nav-link active"
 						aria-current="page" href="/mypage.my">구독 내역 조회</a></li>
-					<li class="nav-item"><a class="nav-link" aria-current="page" href="#">주문 내역 조회</a></li>
+					<li class="nav-item"><a class="nav-link" href="/orderList.my">주문 내역 조회</a></li>
 					<li class="nav-item"><a class="nav-link" href="/inquiryList.iq">내가 쓴 문의</a></li>
 					<li class="nav-item"><a class="nav-link" href="/reviewList.bo">내가 쓴 후기</a>
 					</li>
@@ -90,10 +90,23 @@
 		</div>
 	</div>
 	<script>
-		
 	</script>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

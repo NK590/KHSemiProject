@@ -139,7 +139,7 @@
 				<c:when test="${list.size()==0}">
 					<div class="row content text-center align-items-center">
 						<div class="col">
-							등록된 후기가 없습니다.
+							등록된 리뷰가 없습니다.
 						</div>
 					</div>
 				</c:when>
@@ -158,7 +158,7 @@
         <script>
        		$(".content").on("click",function(e){
        			let seqReview = $(e.target).parent(".row").children().eq(0).html();
-       			console.log(seqInquiry);
+       			console.log(seqReview);
        			$.ajax({url:"/reviewListDetail.bo?seqReview="+seqReview
        				, type:"get"
        				, dataType:"json"
@@ -171,6 +171,8 @@
            		})
        				
        		});
+       		
+       		
        		$(".container").on("click",".modifyReview",function(e){//수정버튼
        			$(e.target).parent().children().css("display","none");
        			$(e.target).parent().next(".buttonBox2").children().css("display","block");
@@ -181,13 +183,13 @@
        		$(".container").on("click",".backBtn",function(){//뒤로가기버튼
     			location.href="/reviewList.bo"
     		})
-    		$(".container").on("click",".deleteInquiry",function(e){//삭제버튼
+    		$(".container").on("click",".deleteReview",function(e){//삭제버튼
     			let seqReview = $(e.target).val();
     			console.log(seqReview);
     			location.href="/reviewDelete.bo?seqReview="+seqReview;
     		})
     		$(".container").on("click",".cancelReview",function(e){//취소버튼
-    			location.href="/ReviewList.iq"
+    			location.href="/ReviewList.bo"
     		})
        		$(".container").on("click",".submitReview",function(e){//수정완료버튼
        			let seqReview = $(e.target).val();
