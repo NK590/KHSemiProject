@@ -29,7 +29,7 @@ public class AdminController extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		response.setCharacterEncoding("utf-8");
 		String uri = request.getRequestURI();
-		
+		sysoutTest
 	if(uri.equals("/")) {  
 		
 		//HttpSession session = request.getSession();   // 세션으로 괸리자 아이디만 접속가능 처리
