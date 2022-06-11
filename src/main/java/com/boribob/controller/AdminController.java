@@ -146,11 +146,11 @@ public class AdminController extends HttpServlet {
 				String productName = multi.getParameter("productName");
 				int productPrice = Integer.parseInt(multi.getParameter("productPrice"));  
 				String productContent = multi.getParameter("productContent");
-				String productImg = "images"+File.separator+ multi.getFilesystemName("productImg");
+				String ori_name = multi.getFilesystemName("productImg");
 				
 				ProductDAO dao = new ProductDAO();
 				try {
-					int rs = dao.insert(new ProductDTO(productCode,productName,productPrice,productContent,productImg));
+					int rs = dao.insert(new ProductDTO(productCode,productName,productPrice,productContent,ori_name));
 					if(rs>0) {  // 만약에 상품 등록에 성공하면 관리자 페이지에 얼럿 띄워주기
 						System.out.println("데이터 삭제 완료");
 						response.sendRedirect("/productList.admin");
@@ -186,16 +186,16 @@ public class AdminController extends HttpServlet {
 			int maxSize = 1024 * 1024 * 10;
 
 			try {
-				MultipartRequest multi = new MultipartRequest(request, filePath, maxSize, "utf-8");
+				MultipartRequest multi = new MultipartRequest(request, filePath, maxSize, "utf-8",new DefaultFileRenamePolicy());
 				int productCode = Integer.parseInt(multi.getParameter("productCode"));  
 				String productName = multi.getParameter("productName");
 				int productPrice = Integer.parseInt(multi.getParameter("productPrice"));  
 				String productContent = multi.getParameter("productContent");
-				String productImg = "images"+File.separator+multi.getFilesystemName("productImg");
+				String ori_name = multi.getFilesystemName("productImg");
 				
 				ProductDAO dao = new ProductDAO();
 				try {
-					int rs = dao.update(new ProductDTO(productCode,productName,productPrice,productContent,productImg));
+					int rs = dao.update(new ProductDTO(productCode,productName,productPrice,productContent,ori_name));
 					 // 만약에 상품 수정에 성공하면 관리자 페이지에 얼럿 띄워주기
 						if(rs>0) {
 							System.out.println("데이터 수정 완료");
@@ -206,10 +206,7 @@ public class AdminController extends HttpServlet {
 						}
 	
 				}catch(Exception e) {e.printStackTrace();
-				} 
-				
-				
-				
+				} 					
 			} catch (Exception e) {
 				e.printStackTrace();
 			}

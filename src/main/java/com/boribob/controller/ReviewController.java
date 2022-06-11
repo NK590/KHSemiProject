@@ -133,7 +133,7 @@ public class ReviewController extends HttpServlet {
 			// 게시물 수정 요청
 		}else if(uri.equals("/reviewUpdate.bo")) {
 			int seqReview = Integer.parseInt(request.getParameter("seqReview"));
-			String reviewTitle = request.getParameter("reivewTitle");
+			String reviewTitle = request.getParameter("reviewTitle");
 			String reviewContent = request.getParameter("reviewContent");
 			System.out.println(reviewTitle+reviewContent);
 			

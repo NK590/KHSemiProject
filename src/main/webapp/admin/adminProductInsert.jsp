@@ -148,21 +148,21 @@
                 <form action="/productInsertProc.admin" method="post" enctype="multipart/form-data" id="product-insert">
                   <tr>
                     <th scope="row">상품코드</th>
-                    <td><input type="text" name="productCode" id="productCode"></td>
+                    <td><input type="text" name="productCode" id="productCode" placeholder="숫자입력"></td>
                   </tr>
                   <tr>
                     <th scope="row">상품명</th>
                     <td>
-                        <input type="text" name="productName" id="productName">
+                        <input type="text" name="productName" id="productName" placeholder="25자 이내">
                     </td>
                   </tr>
                   <tr>
                     <th scope="row">상품가격</th>
-                    <td><input type="text" name="productPrice" id="productPrice"></td>
+                    <td><input type="text" name="productPrice" id="productPrice" placeholder="숫자입력"></td>
                   </tr>
                   <tr>
                     <th scope="row">상품내용</th>
-                    <td><textarea name="productContent" style="resize: none;" id="productContent"></textarea></td>
+                    <td><textarea name="productContent" style="resize: none;" id="productContent" placeholder="500자 이내"></textarea></td>
                   </tr>
                   <tr>
                     <th scope="row">상품이미지</th>
@@ -182,20 +182,26 @@
             })
             
             $("#btnInsert").on("click", function(){ // 등록 버튼을 눌렀을 때 
-            	if($("#productCode").val()==""){
-            		alert("상품코드를 입력해주세요"); 
+            	let regexCode = /^[1-9]\d{0,20}$/;
+            	let regexName = /^(?!\s*$)[a-zA-Zㄱ-힣0-9 ]{1,25}$/;
+            	let regexPrice = /^[1-9]\d{0,20}$/;
+            	let regexContent = /^(?!\s*$)[a-zA-Zㄱ-힣0-9 ,\W]{1,500}$/;
+            	
+            	
+            	if($("#productCode").val()=="" || !regexCode.test($("#productCode").val()) ){
+            		alert("올바른 상품코드를 입력해주세요"); 
             		$("#productCode").focus();
             		return;
-            	}else if($("#productName").val()==""){
-            		alert("상품명을 입력해주세요"); 
+            	}else if($("#productName").val()=="" || !regexName.test($("#productName").val())){
+            		alert("올바른 상품명을 입력해주세요"); 
             		$("#productName").focus();
             		return;
-            	}else if($("#productPrice").val()==""){
-            		alert("상품가격을 입력해주세요"); 
+            	}else if($("#productPrice").val()=="" || !regexPrice.test($("#productPrice").val())){
+            		alert("올바른 상품가격을 입력해주세요"); 
             		$("#productPrice").focus();
             		return;
-            	}else if($("#productContent").val()==""){
-            		alert("상품내용을 입력해주세요"); 
+            	}else if($("#productContent").val()=="" || !regexContent.test($("#productContent").val())){
+            		alert("올바른 상품내용을 입력해주세요"); 
             		$("#productContent").focus();
             		return;
             	}else if($("#productImg").val()==""){

@@ -251,7 +251,7 @@
                     <span>${product.productContent}</span>
                 </div> <br>
                 <div class="btn-subscribe">
-                    <button type="button" class="btn btn-dark" id=" btnSubscribe">구독하기</button>
+                    <button type="button" class="btn btn-dark" id="btnSubscribe">구독하기</button>
                 </div>
             </div>
         </div>

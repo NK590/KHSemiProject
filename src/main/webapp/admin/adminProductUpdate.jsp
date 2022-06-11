@@ -188,8 +188,12 @@
             </div>
             <input type="text" id="productUpdate" value="${productUpdate}">
         <script>
+        
             $("#btnDelete").on("click",function(){ // 삭제 버튼을 눌렀을 때 상품전체 목록으로 이동
-            	if($("#productDelete").val()!==""){
+            	
+            	let regexCode = /^[1-9]\d{0,20}$/;
+            
+            	if($("#productDelete").val() !=="" & regexCode.test($("#productDelete").val())){
             		         	
             	let result = confirm($("#productDelete").val()+"상품을 정말 삭제하시겠습니까");
             	if(result){
@@ -222,7 +226,8 @@
             	}
             	
             	}else{
-            		alert("올바른 값을 입력해 주세요");
+            		alert("올바른 상품코드를 입력해 주세요");
+            		$("#productDelete").val("");
             	}		
             	
             	
@@ -234,20 +239,26 @@
             
             
             $("#btnUpdate").on("click", function(){ // 수정 버튼을 눌렀을 때 
-            	if($("#productCode").val()==""){
-            		alert("상품코드를 입력해주세요"); 
+            	let regexCode = /^[1-9]\d{0,20}$/;
+            	let regexName = /^(?!\s*$)[a-zA-Zㄱ-힣0-9 ]{1,25}$/;
+            	let regexPrice = /^[1-9]\d{0,20}$/;
+            	let regexContent = /^(?!\s*$)[a-zA-Zㄱ-힣0-9 ,\W]{1,500}$/;
+            	
+            	
+            	if($("#productCode").val()=="" || !regexCode.test($("#productCode").val()) ){
+            		alert("올바른 상품코드를 입력해주세요"); 
             		$("#productCode").focus();
             		return;
-            	}else if($("#productName").val()==""){
-            		alert("상품명을 입력해주세요"); 
+            	}else if($("#productName").val()=="" || !regexName.test($("#productName").val())){
+            		alert("올바른 상품명을 입력해주세요"); 
             		$("#productName").focus();
             		return;
-            	}else if($("#productPrice").val()==""){
-            		alert("상품가격을 입력해주세요"); 
+            	}else if($("#productPrice").val()=="" || !regexPrice.test($("#productPrice").val())){
+            		alert("올바른 상품가격을 입력해주세요"); 
             		$("#productPrice").focus();
             		return;
-            	}else if($("#productContent").val()==""){
-            		alert("상품내용을 입력해주세요"); 
+            	}else if($("#productContent").val()=="" || !regexContent.test($("#productContent").val())){
+            		alert("올바른 상품내용을 입력해주세요"); 
             		$("#productContent").focus();
             		return;
             	}else if($("#productImg").val()==""){
